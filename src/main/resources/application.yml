@@ -1,0 +1,16 @@
+server:
+  port: 3000
+
+async:
+  corePoolSize: 2
+  maxPoolSize: 50
+  queueCapacity: 10000
+
+swagger:
+  title: sampleGradle API
+  description: sampleGradle applications and beyond!
+  version: 0.0.1
+  termsOfServiceUrl: https://jhipster.github.io/
+  contact:
+  license: Apache 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.html
