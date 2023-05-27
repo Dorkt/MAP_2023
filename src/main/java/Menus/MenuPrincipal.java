@@ -54,6 +54,7 @@ public class MenuPrincipal {
             break;
 
             default:
+            System.out.println("Digite uma opão válida....");
         }
     }
 
