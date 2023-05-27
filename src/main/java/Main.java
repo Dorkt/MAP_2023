@@ -1,3 +1,6 @@
+import Comprador.Comprador;
+import Loja.Loja;
+
 public class Main {
     public static void main(String[] args) {
         // Criando uma loja

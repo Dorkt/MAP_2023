@@ -1,3 +1,4 @@
+package Comprador;
 public class Comprador {
     private String nome;
     private String email;

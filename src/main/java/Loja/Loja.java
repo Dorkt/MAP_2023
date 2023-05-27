@@ -1,3 +1,4 @@
+package Loja;
 public class Loja {
     private String nome;
     private String email;
