@@ -1,17 +1,18 @@
-public class Loja {
+package Comprador;
+public class Comprador {
     private int id;
     private String nome;
     private String email;
     private String senha;
-    private String cpfCnpj;
+    private String cpf;
     private Endereco endereco;
 
-    public Loja(int id, String nome, String email, String senha, String cpfCnpj, Endereco endereco) {
+    public Comprador(int id, String nome, String email, String senha, String cpf, Endereco endereco) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.cpfCnpj = cpfCnpj;
+        this.cpf = cpf;
         this.endereco = endereco;
     }
 
@@ -49,12 +50,12 @@ public class Loja {
         this.senha = senha;
     }
 
-    public String getCpfCnpj() {
-        return cpfCnpj;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCpfCnpj(String cpfCnpj) {
-        this.cpfCnpj = cpfCnpj;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Endereco getEndereco() {
@@ -65,12 +66,12 @@ public class Loja {
         this.endereco = endereco;
     }
 
-    // Método para exibir os dados da loja
-    public void exibirLoja() {
+    // Método para exibir os dados do comprador
+    public void exibirComprador() {
         System.out.println("ID: " + id);
         System.out.println("Nome: " + nome);
         System.out.println("E-mail: " + email);
-        System.out.println("CPF/CNPJ: " + cpfCnpj);
+        System.out.println("CPF: " + cpf);
         System.out.println("Endereço: " + endereco);
     }
 }
