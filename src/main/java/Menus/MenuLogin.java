@@ -2,6 +2,7 @@ package Menus;
 import java.util.Scanner;
 
 public class MenuLogin{
+    // Creation of variables/attributes
     private boolean opcao = true;
     private String usuario;
     private String senha;
@@ -11,7 +12,7 @@ public class MenuLogin{
     public MenuLogin(){
         this.textoInicialMenuLogin();
 
-        do{
+        do {
             System.out.print("Digite seu email: ");
             this.usuario = this.entrada.nextLine();
 
@@ -33,6 +34,7 @@ public class MenuLogin{
         System.out.println("--------------------------------------------------------------------\n");
     }
 
+    //Method created to check which type of user logged into the system
     private int verificaLogin(String usuario, String senha){
 
         int valor = 0;
@@ -54,6 +56,7 @@ public class MenuLogin{
         return valor;
     }
 
+    //Method created to call the menu according to the user logged in the system
     private void chamaMenuDeAcordoComUsuario(int valor){
 
         switch(valor){

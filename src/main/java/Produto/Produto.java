@@ -1,6 +1,7 @@
 package Produto;
 public class Produto{
     // Variables Declaration
+    private int id = 0;
     private String nome;
     private double valor;    
     private int tipo;
@@ -16,10 +17,10 @@ public class Produto{
         this.quantidade = quantidade;
         this.marca = marca;
         this.descricao = descricao;
+        this.id ++;
     }
     
     // Gets and Sets
-
     public String getNome(){
         return this.nome;
     }
@@ -66,5 +67,13 @@ public class Produto{
 
     public void setDescricao(String descricao){
         this.descricao = descricao;
+    }
+
+    public int getId(){
+        return this.id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 }
