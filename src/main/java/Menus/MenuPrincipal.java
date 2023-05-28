@@ -3,15 +3,15 @@ package Menus;
 import java.util.Scanner;
 
 public class MenuPrincipal {
+    // Creation of variables/attributes
     private boolean opcao = true;
     private String escolha;
     private Scanner entrada = new Scanner(System.in);   
 
     public MenuPrincipal(){
-
         this.textoMenuPrincipal();
 
-        do{
+        do {
             this.menuPrincipal();
             this.escolha = entrada.nextLine();
             this.verificaEscolha(this.escolha);
@@ -28,9 +28,8 @@ public class MenuPrincipal {
 
     private void menuPrincipal(){
         System.out.println("\nEscolha Uma Opção abaixo.");
-        System.out.println("1 - Cadastrar Comprador.");
-        System.out.println("2 - Cadastrar Loja.");
-        System.out.println("3 - Realizar login.");                 
+        System.out.println("1 - Cadastrar Comprador/Loja.");
+        System.out.println("2 - Realizar login.");                 
         System.out.println("0 - Sair do Sistema.\n");
         System.out.print("Digite a sua Opção: ");
     }
@@ -42,10 +41,6 @@ public class MenuPrincipal {
             break;
 
             case "2":
-                System.out.println("Falta Implementar....");
-            break;
-
-            case "3":
                 MenuLogin ml = new MenuLogin();
             break;
 
@@ -54,7 +49,7 @@ public class MenuPrincipal {
             break;
 
             default:
-            System.out.println("Digite uma opão válida....");
+            System.out.println("Digite uma opção válida....");
         }
     }
 

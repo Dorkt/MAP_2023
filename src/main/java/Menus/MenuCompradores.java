@@ -2,7 +2,7 @@ package Menus;
 import java.util.Scanner;
 
 public class MenuCompradores {
-    // Criação das variáveis/atributos
+    // Creation of variables/attributes
     private boolean controlador = true;
     private Scanner entrada = new Scanner(System.in);
     private String escolha;
