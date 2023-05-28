@@ -1,9 +1,8 @@
 package Menus;
-
 import java.util.Scanner;
 
 public class MenuLoja {
-    // Criação das variáveis/atributos
+    // Creation of variables/attributes
     private boolean controlador = true;
     private Scanner entrada = new Scanner(System.in);
     private String escolha;
@@ -11,7 +10,7 @@ public class MenuLoja {
     public MenuLoja(){
         this.textoInicialMenuLoja();
 
-        do{
+        do {
             this.textoSelecaoDaEntradaMenuLoja();
             this.escolha = this.entrada.nextLine();
             System.out.println("\n");
