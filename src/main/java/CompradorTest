@@ -1,0 +1,58 @@
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class CompradorTest {
+
+    @Test
+    public void testGetId() {
+        Comprador comprador = new Comprador(1, "João", "joao@example.com", "senha123", "123456789", new Endereco("Rua A"));
+        assertEquals(1, comprador.getId());
+    }
+
+    @Test
+    public void testSetNome() {
+        Comprador comprador = new Comprador(1, "João", "joao@example.com", "senha123", "123456789", new Endereco("Rua A"));
+        comprador.setNome("Maria");
+        assertEquals("Maria", comprador.getNome());
+    }
+
+    @Test
+    public void testGetEmail() {
+        Comprador comprador = new Comprador(1, "João", "joao@example.com", "senha123", "123456789", new Endereco("Rua A"));
+        assertEquals("joao@example.com", comprador.getEmail());
+    }
+
+    @Test
+    public void testGetSenha() {
+        Comprador comprador = new Comprador(1, "João", "joao@example.com", "senha123", "123456789", new Endereco("Rua A"));
+        assertEquals("senha123", comprador.getSenha());
+    }
+
+    @Test
+    public void testGetCpf() {
+        Comprador comprador = new Comprador(1, "João", "joao@example.com", "senha123", "123456789", new Endereco("Rua A"));
+        assertEquals("123456789", comprador.getCpf());
+    }
+
+    @Test
+    public void testGetEndereco() {
+        Endereco endereco = new Endereco("Rua A");
+        Comprador comprador = new Comprador(1, "João", "joao@example.com", "senha123", "123456789", endereco);
+        assertEquals(endereco, comprador.getEndereco());
+    }
+
+    @Test
+    public void testSetEndereco() {
+        Endereco endereco1 = new Endereco("Rua A");
+        Endereco endereco2 = new Endereco("Rua B");
+        Comprador comprador = new Comprador(1, "João", "joao@example.com", "senha123", "123456789", endereco1);
+        comprador.setEndereco(endereco2);
+        assertEquals(endereco2, comprador.getEndereco());
+    }
+
+    @Test
+    public void testExibirComprador() {
+        Comprador comprador = new Comprador(1, "João", "joao@example.com", "senha123", "123456789", new Endereco("Rua A"));
+        comprador.exibirComprador();
+    }
+}
