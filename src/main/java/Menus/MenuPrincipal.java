@@ -9,9 +9,10 @@ public class MenuPrincipal {
     private Scanner entrada = new Scanner(System.in);   
 
     public MenuPrincipal(){
-        this.textoMenuPrincipal();
 
         do {
+            this.textoMenuPrincipal();
+            
             this.menuPrincipal();
             this.escolha = entrada.nextLine();
             this.verificaEscolha(this.escolha);
@@ -37,7 +38,7 @@ public class MenuPrincipal {
     private void verificaEscolha(String valor){
         switch(valor){
             case "1":
-                System.out.println("Falta Implementar....");
+                MenuCadastroGeral mcg = new MenuCadastroGeral();
             break;
 
             case "2":

@@ -4,13 +4,13 @@ public class Produto{
     private int id = 0;
     private String nome;
     private double valor;    
-    private int tipo;
+    private String tipo;
     private int quantidade;
     private String marca;
     private String descricao;    
 
     // Generic Constructor
-    public Produto(String nome, double valor, int tipo, int quantidade, String marca, String descricao){
+    public Produto(String nome, double valor, String tipo, int quantidade, String marca, String descricao){
         this.nome = nome;
         this.valor = valor;
         this.tipo = tipo;
@@ -37,11 +37,11 @@ public class Produto{
         this.valor = valor;
     }
 
-    public int getTipo(){
+    public String getTipo(){
         return this.tipo;
     }
 
-    public void setTipo(int tipo){
+    public void setTipo(String tipo){
         this.tipo = tipo;
     }
 
