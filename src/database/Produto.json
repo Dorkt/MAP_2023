@@ -1,1 +1,9 @@
-[]
+[ {
+  "id" : 1,
+  "nome" : "Novo Produto",
+  "valor" : 10.0,
+  "tipo" : 1,
+  "quantidade" : 5,
+  "marca" : "Marca 1",
+  "descricao" : "Descrição 1"
+} ]
