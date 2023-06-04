@@ -20,7 +20,7 @@ public class Controlador {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         String diretorioProjeto = System.getProperty("user.dir");
-        String caminhoArquivo = diretorioProjeto + "/src/database/";
+        String caminhoArquivo = diretorioProjeto + File.separator + "src" + File.separator + "database" + File.separator;
 
         if (obj instanceof Loja) {
             try {
@@ -75,7 +75,7 @@ public class Controlador {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         String diretorioProjeto = System.getProperty("user.dir");
-        String caminhoArquivo = diretorioProjeto + "/src/database/";
+        String caminhoArquivo = diretorioProjeto + File.separator + "src" + File.separator + "database" + File.separator;
         List<Object> objetosExistentes = new ArrayList<>();
 
         if (type == "Loja") {
@@ -114,7 +114,7 @@ public class Controlador {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         String diretorioProjeto = System.getProperty("user.dir");
-        String caminhoArquivo = diretorioProjeto + "/src/database/";
+        String caminhoArquivo = diretorioProjeto + File.separator + "src" + File.separator + "database" + File.separator;
 
         String caminhoFinal = caminhoArquivo + type + ".json";
         File arquivoJson = new File(caminhoFinal);
@@ -168,7 +168,7 @@ public class Controlador {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         String diretorioProjeto = System.getProperty("user.dir");
-        String caminhoArquivo = diretorioProjeto + "/src/database/";
+        String caminhoArquivo = diretorioProjeto + File.separator + "src" + File.separator + "database" + File.separator;
 
         String caminhoFinal = caminhoArquivo + type + ".json";
         File arquivoJson = new File(caminhoFinal);
