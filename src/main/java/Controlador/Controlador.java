@@ -1,7 +1,6 @@
-package Utils;
+package Controlador;
 
 import Comprador.Comprador;
-import Produto.Produto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.TypeFactory;
@@ -13,8 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Loja.Loja;
+import Produto.Produto;
 
-public class Utils {
+public class Controlador {
     public void insertData(Object obj) {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -33,6 +33,7 @@ public class Utils {
                 objetosAtualizados.add(obj);
 
                 objectMapper.writeValue(arquivoJson, objetosAtualizados);
+                System.out.println("Loja inserida com sucesso!");
             } catch (IOException e) {
                 System.err.println("Ocorreu um erro ao salvar os dados no arquivo JSON: " + e.getMessage());
             }
@@ -47,6 +48,7 @@ public class Utils {
                 objetosAtualizados.add(obj);
 
                 objectMapper.writeValue(arquivoJson, objetosAtualizados);
+                System.out.println("Comprador inserido com sucesso!");
             } catch (IOException e) {
                 System.err.println("Ocorreu um erro ao salvar os dados no arquivo JSON: " + e.getMessage());
             }
@@ -61,12 +63,11 @@ public class Utils {
                 objetosAtualizados.add(obj);
 
                 objectMapper.writeValue(arquivoJson, objetosAtualizados);
+                System.out.println("Produto inserida com sucesso!");
             } catch (IOException e) {
                 System.err.println("Ocorreu um erro ao salvar os dados no arquivo JSON: " + e.getMessage());
             }
         }
-
-        System.out.println("Dados inseridos com sucesso");
     }
 
     public List<Object> readData(String type) {
@@ -133,6 +134,7 @@ public class Utils {
                 });
 
                 objectMapper.writeValue(arquivoJson, objetosExistentes);
+                System.out.println("Loja removido com sucesso!");
             } else if (type == "Produto") {
                 CollectionType listType = typeFactory.constructCollectionType(List.class, Produto.class);
 
@@ -143,6 +145,7 @@ public class Utils {
                 });
 
                 objectMapper.writeValue(arquivoJson, objetosExistentes);
+                System.out.println("Produto removido com sucesso!");
             } else if (type == "Comprador") {
                 CollectionType listType = typeFactory.constructCollectionType(List.class, Comprador.class);
 
@@ -153,6 +156,7 @@ public class Utils {
                 });
 
                 objectMapper.writeValue(arquivoJson, objetosExistentes);
+                System.out.println("Comprador removido com sucesso!");
             }
         } catch (IOException e) {
             System.err.println("Ocorreu um erro ao remover o dado do arquivo JSON: " + e.getMessage());
@@ -185,6 +189,7 @@ public class Utils {
                     }
                 }
                 objectMapper.writeValue(arquivoJson, objetosExistentes);
+                System.out.println("Loja atualizada com sucesso!");
             } else if (type == "Produto") {
                 CollectionType listType = typeFactory.constructCollectionType(List.class, Produto.class);
 
@@ -200,6 +205,7 @@ public class Utils {
 
                 // Salvar os dados atualizados no arquivo JSON
                 objectMapper.writeValue(arquivoJson, objetosExistentes);
+                System.out.println("Produto atualizado com sucesso!");
             } else if (type == "Comprador") {
                 CollectionType listType = typeFactory.constructCollectionType(List.class, Comprador.class);
 
@@ -215,6 +221,7 @@ public class Utils {
 
                 // Salvar os dados atualizados no arquivo JSON
                 objectMapper.writeValue(arquivoJson, objetosExistentes);
+                System.out.println("Comprador atualizado com sucesso!");
             }
         } catch (IOException e) {
             System.err.println("Ocorreu um erro ao atualizar o dado no arquivo JSON: " + e.getMessage());
