@@ -5,9 +5,9 @@ public class Comprador {
     private String email;
     private String senha;
     private String cpf;
-    private Endereco endereco;
+    private String endereco;
 
-    public Comprador(int id, String nome, String email, String senha, String cpf, Endereco endereco) {
+    public Comprador(int id, String nome, String email, String senha, String cpf, String endereco) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -58,11 +58,11 @@ public class Comprador {
         this.cpf = cpf;
     }
 
-    public Endereco getEndereco() {
+    public String getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco) {
+    public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
