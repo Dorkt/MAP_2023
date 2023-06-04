@@ -1,5 +1,6 @@
 package Comprador;
 public class Comprador {
+    private int id = 0;
     private String nome;
     private String email;
     private String senha;
@@ -14,7 +15,13 @@ public class Comprador {
         this.endereco = endereco;
     }
 
+    // Adicionando construtor vazio para que a biblioteca que lê os dados persistidos conseguir converter os tipos para
+    // o dessa classe
+    public Comprador() {}
+
     // Getters e Setters
+
+    public int getId() { return this.id; };
 
     public String getNome() {
         return nome;

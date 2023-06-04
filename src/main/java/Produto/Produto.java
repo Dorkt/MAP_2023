@@ -3,7 +3,7 @@ public class Produto{
     // Variables Declaration
     private int id = 0;
     private String nome;
-    private double valor;    
+    private double valor;
     private int tipo;
     private int quantidade;
     private String marca;
@@ -19,6 +19,10 @@ public class Produto{
         this.descricao = descricao;
         this.id ++;
     }
+
+    // Adicionando construtor vazio para que a biblioteca que lê os dados persistidos conseguir converter os tipos para
+    // o dessa classe
+    public Produto() {}
     
     // Gets and Sets
     public String getNome(){

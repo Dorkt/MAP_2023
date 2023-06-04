@@ -1,12 +1,14 @@
 package Loja;
 public class Loja {
+    private int id;
     private String nome;
     private String email;
     private String senha;
     private String cpfCnpj;
     private String endereco;
 
-    public Loja(String nome, String email, String senha, String cpfCnpj, String endereco) {
+    public Loja(int id, String nome, String email, String senha, String cpfCnpj, String endereco) {
+        this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -14,7 +16,17 @@ public class Loja {
         this.endereco = endereco;
     }
 
+    // Adicionando construtor vazio para que a biblioteca que lê os dados persistidos conseguir converter os tipos para
+    // o dessa classe
+    public Loja() {
+
+    }
+
     // Getters e Setters
+
+    public int getId() {
+        return this.id;
+    }
 
     public String getNome() {
         return nome;
