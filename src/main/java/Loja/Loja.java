@@ -7,8 +7,11 @@ public class Loja {
     private String cpfCnpj;
     private String endereco;
 
-    public Loja(int id, String nome, String email, String senha, String cpfCnpj, String endereco) {
-        this.id = id;
+    public Loja(String nome, String email, String senha, String cpfCnpj, String endereco) {
+        ControladorLoja controller = new ControladorLoja();
+        int size = controller.readData("Loja").size();
+
+        this.id = size + 1;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -16,14 +19,16 @@ public class Loja {
         this.endereco = endereco;
     }
 
+    // Adicionando construtor vazio para que a biblioteca que lê os dados persistidos conseguir converter os tipos para
+    // o dessa classe
+    public Loja() {
+
+    }
+
     // Getters e Setters
 
     public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        return this.id;
     }
 
     public String getNome() {

@@ -7,8 +7,12 @@ public class Comprador {
     private String cpf;
     private String endereco;
 
-    public Comprador(int id, String nome, String email, String senha, String cpf, String endereco) {
+    public Comprador(String nome, String email, String senha, String cpf, String endereco) {
+        ControladorComprador t = new ControladorComprador();
         this.id = id;
+        int size = t.readData("Comprador").size();
+
+        this.id = size + 1;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -16,14 +20,14 @@ public class Comprador {
         this.endereco = endereco;
     }
 
+    // Adicionando construtor vazio para que a biblioteca que lê os dados persistidos conseguir converter os tipos para
+    // o dessa classe
+    public Comprador() {}
+
     // Getters e Setters
 
     public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        return this.id;
     }
 
     public String getNome() {
