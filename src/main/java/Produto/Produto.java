@@ -1,7 +1,7 @@
 package Produto;
 public class Produto{
     // Variables Declaration
-    private int id = 0;
+    private int id;
     private String nome;
     private double valor;    
     private String tipo;
@@ -11,6 +11,10 @@ public class Produto{
 
     // Generic Constructor
     public Produto(String nome, double valor, String tipo, int quantidade, String marca, String descricao){
+        ControladorProduto controller = new ControladorProduto();
+        int size = controller.readData("Produto").size();
+
+        this.id = size + 1;
         this.nome = nome;
         this.valor = valor;
         this.tipo = tipo;
@@ -19,8 +23,13 @@ public class Produto{
         this.descricao = descricao;
         this.id ++;
     }
+
+    public Produto() {
+
+    }
     
     // Gets and Sets
+
     public String getNome(){
         return this.nome;
     }
@@ -71,9 +80,5 @@ public class Produto{
 
     public int getId(){
         return this.id;
-    }
-
-    public void setId(int id){
-        this.id = id;
     }
 }
