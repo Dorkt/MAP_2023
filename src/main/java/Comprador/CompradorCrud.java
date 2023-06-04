@@ -1,8 +1,6 @@
 package main.java.Comprador;
 
 public class CompradorCrud {
-    
-
 
     private Utils utils;
 
@@ -16,8 +14,18 @@ public class CompradorCrud {
         System.out.println("Comprador criado com sucesso");
     }
 
-    public List<Object> lerComprador() {
+    public List<Comprador> lerComprador() {
         return utils.readData("Comprador");
+    }
+
+    public void atualizarComprador(int id, String novoNome) {
+        utils.updateData("Comprador", id, novoNome);
+        System.out.println("Comprador atualizado com sucesso");
+    }
+
+    public void removerComprador(int id) {
+        utils.deleteData(id, "Comprador");
+        System.out.println("Comprador removido com sucesso");
     }
 
 }

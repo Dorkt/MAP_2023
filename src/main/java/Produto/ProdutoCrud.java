@@ -1,6 +1,6 @@
 package main.java.Produto;
-public class ProdutoCrud{
 
+public class ProdutoCrud{
 
     private Utils utils;
 
@@ -16,6 +16,16 @@ public class ProdutoCrud{
 
     public List<Object> lerProdutos() {
         return utils.readData("Produto");
+    }
+
+    public void atualizarProduto(int id, String novoNome) {
+        utils.updateData("Produto", id, novoNome);
+        System.out.println("Produto atualizado com sucesso");
+    }
+
+    public void deletarProduto(int id) {
+        utils.deleteData(id, "Produto");
+        System.out.println("Produto deletado com sucesso");
     }
 
 }
