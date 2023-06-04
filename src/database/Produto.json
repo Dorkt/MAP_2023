@@ -1,1 +1,9 @@
-[]
+[ {
+  "id" : 1,
+  "nome" : "Borracha",
+  "valor" : 5.99,
+  "tipo" : 5,
+  "quantidade" : 1,
+  "marca" : "Toque Mágico",
+  "descricao" : "Borracha Branca Macia"
+} ]
