@@ -13,11 +13,11 @@ public class ControladorComprador {
         System.out.println("Comprador inserido com sucesso!");
     }
 
-    public List<Comprador> pegarTodosCompradores() {
+    public List<Object> pegarTodosCompradores() {
 
         Utils utils = new Utils();
 
-        List<Comprador> compradores = utils.readData("Comprador");
+        List<Object> compradores = utils.readData("Comprador");
         return compradores;
     }
 

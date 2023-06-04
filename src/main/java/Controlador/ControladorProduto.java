@@ -13,11 +13,11 @@ public class ControladorProduto {
         System.out.println("Produto inserido com sucesso!");
     }
 
-    public List<Produto> pegarTodosProdutos() {
+    public List<Object> pegarTodosProdutos() {
 
         Utils utils = new Utils();
 
-        List<Produto> produtos = utils.readData("Produto");
+        List<Object> produtos = utils.readData("Produto");
         return produtos;
     }
 
