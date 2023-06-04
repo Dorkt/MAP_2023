@@ -13,11 +13,25 @@ public class ControladorComprador {
         System.out.println("Comprador inserido com sucesso!");
     }
 
-    public List<Object> pegarTodosCompradores() {
+    public List<Comprador> pegarTodosCompradores() {
 
         Utils utils = new Utils();
 
-        List<Object> compradores = utils.readData("Comprador");
+        List<Comprador> compradores = utils.readData("Comprador");
         return compradores;
+    }
+
+    public void removerComprador(int id) {
+        Utils utils = new Utils();
+        utils.deleteData(id, "Comprador");
+
+        System.out.println("Comprador removido com sucesso!");
+    }
+
+    public void atualizarNomeComprador(int id, String novoNome) {
+        Utils utils = new Utils();
+        utils.updateData("Comprador", id, novoNome);
+
+        System.out.println("Comprador atualizado com sucesso!");
     }
 }
