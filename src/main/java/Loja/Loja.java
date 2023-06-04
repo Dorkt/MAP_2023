@@ -5,9 +5,9 @@ public class Loja {
     private String email;
     private String senha;
     private String cpfCnpj;
-    private Endereco endereco;
+    private String endereco;
 
-    public Loja(int id, String nome, String email, String senha, String cpfCnpj, Endereco endereco) {
+    public Loja(int id, String nome, String email, String senha, String cpfCnpj, String endereco) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -58,11 +58,11 @@ public class Loja {
         this.cpfCnpj = cpfCnpj;
     }
 
-    public Endereco getEndereco() {
+    public String getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco) {
+    public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
