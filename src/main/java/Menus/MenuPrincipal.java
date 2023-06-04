@@ -1,7 +1,4 @@
 package Menus;
-
-import Controlador.ControladorLoja;
-
 import java.util.Scanner;
 
 public class MenuPrincipal {
@@ -55,5 +52,4 @@ public class MenuPrincipal {
             System.out.println("Digite uma opção válida....");
         }
     }
-
 }

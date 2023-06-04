@@ -17,6 +17,6 @@ public class Main {
         //Comprador comprador = new Comprador("João", "joao@email.com", "senha456", "987654321", "Rua B");
         //comprador.exibirComprador();
 
-        //MenuPrincipal mp = new MenuPrincipal();
+        MenuPrincipal mp = new MenuPrincipal();
     }
 }
