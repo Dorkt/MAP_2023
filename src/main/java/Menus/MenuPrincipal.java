@@ -1,5 +1,7 @@
 package Menus;
 
+import Controlador.ControladorLoja;
+
 import java.util.Scanner;
 
 public class MenuPrincipal {
