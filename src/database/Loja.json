@@ -1,13 +1,1 @@
-[ {
-  "nome" : "Lojão 10",
-  "email" : "lojao10@gmail.com",
-  "senha" : "101010",
-  "cpfCnpj" : "123.456.789-10",
-  "endereco" : "Rua do Cabaré 10"
-}, {
-  "nome" : "Lojão 10",
-  "email" : "lojao10@gmail.com",
-  "senha" : "101010",
-  "cpfCnpj" : "001.234.0005-67",
-  "endereco" : "Rua do Bar, 10"
-} ]
+[]
