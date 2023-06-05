@@ -51,8 +51,7 @@ public class MenuCompradores {
     private void excluirDadosPorId(){
         System.out.print("\nDigite o id do Comprador para excluir :");
         int id = entrada.nextInt();
-        controladorComprador.deleteData(id, "Comprador");
-        
+        controladorComprador.deleteData(id, "Comprador");        
     }
 
     //Method created to check which option was chosen
