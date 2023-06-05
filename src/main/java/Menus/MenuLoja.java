@@ -28,11 +28,10 @@ public class MenuLoja {
 
     private void textoSelecaoDaEntradaMenuLoja(){
         System.out.println("Escolha Uma Opção abaixo.");
-        System.out.println("1 - Cadastrar Loja.");
-        System.out.println("2 - Buscar Loja.");
-        System.out.println("3 - Atualizar Loja.");        
-        System.out.println("4 - Remover Loja.");        
-        System.out.println("5 - Listar todas as Lojas.");        
+        System.out.println("1 - Buscar Loja.");
+        System.out.println("2 - Atualizar Loja.");        
+        System.out.println("3 - Remover Loja.");        
+        System.out.println("4 - Listar todas as Lojas.");        
         System.out.println("0 - Sair do Sistema de Lojas.\n");
         System.out.print("Digite a sua Opção: ");
     }
