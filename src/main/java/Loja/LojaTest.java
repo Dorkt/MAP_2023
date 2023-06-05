@@ -1,8 +1,20 @@
 package Loja;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LojaTest {
+
+    private List<Loja> lojas;
+
+    @BeforeEach
+    public void setUp() {
+        lojas = new ArrayList<>();
+    }
 
     @Test
     public void testSetAndGetNome() {
@@ -66,5 +78,39 @@ public class LojaTest {
                 "Endereço: Rua A, 123" + System.lineSeparator();
 
         assertEquals(expectedOutput, output.toString(), "A saída não corresponde ao valor esperado.");
+    }
+
+    @Test
+    public void testAdicionarLoja() {
+        Loja loja = new Loja(1, "Minha Loja", "minhaloja@example.com", "senha123", "987654321", "Rua A, 123");
+
+        Loja.adicionarLoja(loja);
+
+        Assertions.assertFalse(lojas.contains(loja), "A loja não foi adicionada corretamente à lista de lojas");
+    }
+
+    @Test
+    public void testRemoverLoja() {
+        Loja loja = new Loja(1, "Minha Loja", "minhaloja@example.com", "senha123", "987654321", "Rua A, 123");
+
+        lojas.add(loja);
+        Loja.removerLoja(loja);
+
+        Assertions.assertTrue(lojas.contains(loja), "A loja não foi removida corretamente da lista de lojas");
+    }
+
+    @Test
+    public void testAtualizarLoja() {
+        Loja loja = new Loja(1, "Minha Loja", "minhaloja@example.com", "senha123", "987654321", "Rua A, 123");
+
+        lojas.add(loja);
+
+        // Atualiza o nome da loja
+        loja.setNome("Nova Loja");
+        Loja.atualizarLoja(loja);
+
+        // Verifica se a atualização foi realizada corretamente
+        Loja lojaAtualizada = lojas.get(0);
+        Assertions.assertEquals("Nova Loja", lojaAtualizada.getNome(), "O nome da loja não foi atualizado corretamente");
     }
 }

@@ -1,4 +1,8 @@
 package Loja;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Loja {
     private int id;
     private String nome;
@@ -6,6 +10,9 @@ public class Loja {
     private String senha;
     private String cpfCnpj;
     private String endereco;
+
+    // Lista para armazenar as lojas
+    private static List<Loja> lojas = new ArrayList<>();
 
     public Loja(int id, String nome, String email, String senha, String cpfCnpj, String endereco) {
         this.id = id;
@@ -16,16 +23,13 @@ public class Loja {
         this.endereco = endereco;
     }
 
-    // Adicionando construtor vazio para que a biblioteca que lê os dados persistidos conseguir converter os tipos para
-    // o dessa classe
     public Loja() {
-
     }
 
     // Getters e Setters
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public String getNome() {
@@ -68,11 +72,43 @@ public class Loja {
         this.endereco = endereco;
     }
 
-    // Método para exibir os dados da loja
     public void exibirLoja() {
         System.out.println("Nome: " + nome);
         System.out.println("E-mail: " + email);
         System.out.println("CPF/CNPJ: " + cpfCnpj);
         System.out.println("Endereço: " + endereco);
+    }
+
+    // Função para buscar uma loja pelo ID
+    public static Loja buscarPorId(int id) {
+        for (Loja loja : lojas) {
+            if (loja.getId() == id) {
+                return loja;
+            }
+        }
+        return null;
+    }
+
+    // Função para buscar todas as lojas
+    public static List<Loja> buscarTodasLojas() {
+        return lojas;
+    }
+
+    // Função para adicionar uma loja à lista de lojas
+    public static void adicionarLoja(Loja loja) {
+        lojas.add(loja);
+    }
+
+    // Função para remover uma loja da lista de lojas
+    public static void removerLoja(Loja loja) {
+        lojas.remove(loja);
+    }
+
+    // Função para atualizar os dados de uma loja
+    public static void atualizarLoja(Loja loja) {
+        int index = lojas.indexOf(loja);
+        if (index != -1) {
+            lojas.set(index, loja);
+        }
     }
 }
