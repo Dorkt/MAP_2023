@@ -59,7 +59,8 @@ public class MenuCompradores {
     private void excluirDadosPorId(){
         System.out.print("\nDigite o id do Comprador para excluir :");
         int id = entrada.nextInt();
-        this.excluirDados(id, controladorComprador.readData("Comprador"));
+        controladorComprador.deleteData(id, "Comprador");
+        
     }
 
     //Method created to check which option was chosen
@@ -71,7 +72,7 @@ public class MenuCompradores {
                 break;
 
             case "2":
-                System.out.println("Falta Implementar essa parte...");                
+                     this.atualizarInformacaoDoNome();           
                 break;
 
             case "3":
@@ -131,10 +132,6 @@ public class MenuCompradores {
         }
     }
     
-    private void excluirDados(int id, List<Object> jsonData) {
-        controladorComprador.deleteData(id, "Comprador");
-    }
-
     private String obterValor(Map<?, ?> mapa, String chave) {
         Object valor = mapa.get(chave);
         if (valor != null) {
@@ -142,5 +139,15 @@ public class MenuCompradores {
         } else {
             return "";
         }
+    }
+
+    private void atualizarInformacaoDoNome(){
+        System.out.print("\nDigite o id para atualizar o nome: ");
+        String input = entrada.nextLine();
+        int id = Integer.parseInt(input);
+        System.out.print("\nDigite o novo nome: ");
+        String nome = entrada.nextLine();
+        controladorComprador.updateData("Comprador", id, nome);        
+
     }
 }
