@@ -62,7 +62,7 @@ public class MenuLoja {
                 break;
 
             case "5":
-                System.out.println("Falta implementar essa parte....\n");                
+                MenuProduto menuProduto = new MenuProduto();
                 break;
 
             case "0":

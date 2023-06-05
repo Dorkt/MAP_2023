@@ -5,4 +5,11 @@
   "senha" : "123456",
   "cpfCnpj" : "57574547457",
   "endereco" : "rua teste"
+}, {
+  "id" : 2,
+  "nome" : "a",
+  "email" : "a",
+  "senha" : "123",
+  "cpfCnpj" : "12345",
+  "endereco" : "123"
 } ]
