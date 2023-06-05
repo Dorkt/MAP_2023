@@ -1,11 +1,23 @@
 package Menus;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import javax.tools.JavaFileObject;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import Comprador.ControladorComprador;
 
 public class MenuCompradores {
     // Creation of variables/attributes
     private boolean controlador = true;
     private Scanner entrada = new Scanner(System.in);
     private String escolha;
+    private ControladorComprador controladorComprador = new ControladorComprador();
 
     public MenuCompradores(){
         this.textoInicialMenuComprador();
@@ -30,13 +42,24 @@ public class MenuCompradores {
     //Method created to show choice information
     private void textoSelecaoDaEntradaMenuComprador(){
         System.out.println("Escolha Uma Opção abaixo.");
-        System.out.println("1 - Cadastrar Comprador.");
-        System.out.println("2 - Buscar Comprador.");
-        System.out.println("3 - Atualizar Comprador.");        
-        System.out.println("4 - Remover Comprador.");        
-        System.out.println("5 - Listar todos os Compradores.");        
+        System.out.println("1 - Buscar Comprador.");
+        System.out.println("2 - Atualizar Seus dados.");        
+        System.out.println("3 - Remover conta Comprador.");        
+        System.out.println("4 - Listar todos os Compradores.");        
         System.out.println("0 - Sair do Sistema de Compradores.\n");
         System.out.print("Digite a sua Opção: ");
+    }
+
+    private void buscarCompradorPorID(){
+        System.out.print("\nDigite o id do Comprador para buscar os dados :");
+        String id = entrada.nextLine();
+        this.mostrarDadosPorId(id, controladorComprador.readData("Comprador"));
+    }
+
+    private void excluirDadosPorId(){
+        System.out.print("\nDigite o id do Comprador para excluir :");
+        int id = entrada.nextInt();
+        this.excluirDados(id, controladorComprador.readData("Comprador"));
     }
 
     //Method created to check which option was chosen
@@ -44,7 +67,7 @@ public class MenuCompradores {
         //Falta implementar os sub-menus
         switch(opcao){
             case "1":            
-                System.out.println("Falta Implementar essa parte...");                
+                this.buscarCompradorPorID();                
                 break;
 
             case "2":
@@ -52,15 +75,11 @@ public class MenuCompradores {
                 break;
 
             case "3":
-                System.out.println("Falta Implementar essa parte...");
+                    this.excluirDadosPorId();
                 break;
 
             case "4":
-                System.out.println("Falta Implementar essa parte...");                
-                break;
-
-            case "5":
-                System.out.println("Falta Implementar essa parte...");                
+                    this.imprimirDadosDeTodosOsCompradores(controladorComprador.readData("Comprador"));            
                 break;
 
             case "0":
@@ -70,6 +89,58 @@ public class MenuCompradores {
 
             default:
                 System.out.println("Digite uma Opção válida....");
+        }
+    }
+
+    private void mostrarDadosPorId(String id, List<Object> listaDeDados) {
+        for (Object objeto : listaDeDados) {
+            // Verifica se o objeto possui um campo "id" e se o valor é igual ao ID desejado
+            if (objeto instanceof Map) {
+                Map<?, ?> mapa = (Map<?, ?>) objeto;
+                Object valorId = mapa.get("id");
+                if (valorId != null && valorId.toString().equals(id)) {
+                    // Mostra os campos desejados
+                    System.out.println("ID: " + mapa.get("id"));
+                    System.out.println("Nome: " + mapa.get("nome"));
+                    System.out.println("Email: " + mapa.get("email"));
+                    System.out.println("Endereço: " + mapa.get("endereco"));
+                    return;
+                }
+            }
+        }
+
+        System.out.println("Objeto com o ID " + id + " não encontrado.");
+    }
+
+    private void imprimirDadosDeTodosOsCompradores(List<Object> listaDeDados) {
+        for (Object objeto : listaDeDados) {
+            if (objeto instanceof Map) {
+                Map<?, ?> mapa = (Map<?, ?>) objeto;
+                
+                String id = obterValor(mapa, "id");
+                String nome = obterValor(mapa, "nome");
+                String email = obterValor(mapa, "email");
+                String endereco = obterValor(mapa, "endereco");
+    
+                System.out.println("Id: " + id);
+                System.out.println("Nome: " + nome);
+                System.out.println("Email: " + email);
+                System.out.println("Endereço: " + endereco);
+                System.out.println("-------------------------");
+            }
+        }
+    }
+    
+    private void excluirDados(int id, List<Object> jsonData) {
+        controladorComprador.deleteData(id, "Comprador");
+    }
+
+    private String obterValor(Map<?, ?> mapa, String chave) {
+        Object valor = mapa.get(chave);
+        if (valor != null) {
+            return valor.toString();
+        } else {
+            return "";
         }
     }
 }
