@@ -37,7 +37,7 @@ public class MenuCompradores {
         System.out.println("1 - Buscar Comprador.");
         System.out.println("2 - Atualizar Seus dados.");        
         System.out.println("3 - Remover conta Comprador.");        
-        System.out.println("4 - Listar todos os Compradores.");        
+        System.out.println("4 - Listar todos os Compradores.");       
         System.out.println("0 - Sair do Sistema de Compradores.\n");
         System.out.print("Digite a sua Opção: ");
     }

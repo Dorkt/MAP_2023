@@ -37,6 +37,7 @@ public class MenuLoja {
         System.out.println("2 - Atualizar Loja.");        
         System.out.println("3 - Remover Loja.");        
         System.out.println("4 - Listar todas as Lojas.");        
+        System.out.println("5 - Cadastrar produtos.");         
         System.out.println("0 - Sair do Sistema de Lojas.\n");
         System.out.print("Digite a sua Opção: ");
     }
@@ -58,6 +59,10 @@ public class MenuLoja {
 
             case "4":
                 this.imprimirDadosDeTodasLojas(controladorLoja.readData("Loja"));                
+                break;
+
+            case "5":
+                System.out.println("Falta implementar essa parte....\n");                
                 break;
 
             case "0":
