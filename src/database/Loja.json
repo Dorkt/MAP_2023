@@ -1,1 +1,15 @@
-[]
+[ {
+  "id" : 1,
+  "nome" : "olx",
+  "email" : "olx@gmail.com",
+  "senha" : "123456",
+  "cpfCnpj" : "57574547457",
+  "endereco" : "rua teste"
+}, {
+  "id" : 2,
+  "nome" : "mercado livre",
+  "email" : "mercadolivre@gmail.com",
+  "senha" : "456123",
+  "cpfCnpj" : "654654654",
+  "endereco" : "rua dos testes2"
+} ]

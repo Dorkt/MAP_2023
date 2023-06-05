@@ -115,15 +115,16 @@ public class Controlador {
 
         String diretorioProjeto = System.getProperty("user.dir");
         String caminhoArquivo = diretorioProjeto + File.separator + "src" + File.separator + "database" + File.separator;
-
-        String caminhoFinal = caminhoArquivo + type + ".json";
-        File arquivoJson = new File(caminhoFinal);
+        
+        
 
         try {
             // Ler os dados existentes do arquivo JSON
             TypeFactory typeFactory = objectMapper.getTypeFactory();
 
             if (type == "Loja") {
+                String caminhoFinal = caminhoArquivo + "Loja.json";
+                File arquivoJson = new File(caminhoFinal);
                 CollectionType listType = typeFactory.constructCollectionType(List.class, Loja.class);
 
                 List<Loja> objetosExistentes = objectMapper.readValue(arquivoJson, listType);
@@ -136,6 +137,8 @@ public class Controlador {
                 objectMapper.writeValue(arquivoJson, objetosExistentes);
                 System.out.println("Loja removido com sucesso!");
             } else if (type == "Produto") {
+                String caminhoFinal = caminhoArquivo + "Produto.json";
+                File arquivoJson = new File(caminhoFinal);
                 CollectionType listType = typeFactory.constructCollectionType(List.class, Produto.class);
 
                 List<Produto> objetosExistentes = objectMapper.readValue(arquivoJson, listType);
@@ -147,6 +150,8 @@ public class Controlador {
                 objectMapper.writeValue(arquivoJson, objetosExistentes);
                 System.out.println("Produto removido com sucesso!");
             } else if (type == "Comprador") {
+                String caminhoFinal = caminhoArquivo + "Comprador.json";
+                File arquivoJson = new File(caminhoFinal);
                 CollectionType listType = typeFactory.constructCollectionType(List.class, Comprador.class);
 
                 List<Comprador> objetosExistentes = objectMapper.readValue(arquivoJson, listType);

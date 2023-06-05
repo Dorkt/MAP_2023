@@ -1,13 +1,13 @@
 package Menus;
 import java.util.Scanner;
 
-public class MenuPrincipal {
+public class MarketplaceFachade {
     // Creation of variables/attributes
     private boolean opcao = true;
     private String escolha;
     private Scanner entrada = new Scanner(System.in);   
 
-    public MenuPrincipal(){
+    public MarketplaceFachade(){
 
         do {
             this.textoMenuPrincipal();

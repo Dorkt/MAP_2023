@@ -1,6 +1,10 @@
 package Menus;
 
 import java.util.Scanner;
+import Comprador.Comprador;
+import Comprador.ControladorComprador;
+import Loja.ControladorLoja;
+import Loja.Loja;
 
 public class MenuCadastroGeral {
     private boolean continuar = true;
@@ -12,6 +16,11 @@ public class MenuCadastroGeral {
     private String cpfCnpj;
     private String endereco;
     private Scanner entrada = new Scanner(System.in);
+    private ControladorLoja controladorLoja = new ControladorLoja();
+    private ControladorComprador controladorComprador = new ControladorComprador();
+    private Loja loja;
+    private Comprador comprador;
+    
 
 
     public MenuCadastroGeral(){
@@ -164,10 +173,12 @@ public class MenuCadastroGeral {
     private void salvarDados(){
 
         if(this.tipoDeCadastro.equals("1")){
-            System.out.println("\nInserir os dados no arquivo Comprador\n");
+            this.loja = new Loja(this.nome, this.email, this.senha, this.cpfCnpj, this.endereco);
+            this.controladorLoja.insertData(this.loja);
         }
         else{
-            System.out.println("\nInserir os dados no arquivo Loja\n");
+            this.comprador = new Comprador(this.nome, this.email, this.senha, this.cpfCnpj, this.endereco);
+            this.controladorComprador.insertData(this.comprador);
         }
         
     }

@@ -1,6 +1,6 @@
 import Comprador.ControladorComprador;
 import Loja.ControladorLoja;
-import Menus.MenuPrincipal;
+import Menus.MarketplaceFachade;
 import Produto.ControladorProduto;
 
 import Comprador.Comprador;
@@ -17,6 +17,6 @@ public class Main {
         //comprador.exibirComprador();
         // Produto produt = new Produto("a", 1, 1, 1, "lacost", "desc");
 
-        MenuPrincipal mp = new MenuPrincipal();
+        MarketplaceFachade mp = new MarketplaceFachade();
     }
 }
