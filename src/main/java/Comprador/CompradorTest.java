@@ -1,6 +1,6 @@
 package Comprador;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CompradorTest {
 
@@ -42,6 +42,66 @@ public class CompradorTest {
         comprador.setEndereco("Rua A, 123");
 
         assertEquals("Rua A, 123", comprador.getEndereco());
+    }
+
+    @Test
+    public void testAdicionarAoCarrinho() {
+        Comprador comprador = new Comprador();
+        comprador.adicionarAoCarrinho("Item 1");
+        comprador.adicionarAoCarrinho("Item 2");
+
+        assertEquals(2, comprador.getCarrinhoDeCompras().size());
+        assertTrue(comprador.getCarrinhoDeCompras().contains("Item 1"));
+        assertTrue(comprador.getCarrinhoDeCompras().contains("Item 2"));
+    }
+
+    @Test
+    public void testRemoverDoCarrinho() {
+        Comprador comprador = new Comprador();
+        comprador.adicionarAoCarrinho("Item 1");
+        comprador.adicionarAoCarrinho("Item 2");
+
+        comprador.removerDoCarrinho("Item 1");
+
+        assertEquals(1, comprador.getCarrinhoDeCompras().size());
+        assertFalse(comprador.getCarrinhoDeCompras().contains("Item 1"));
+        assertTrue(comprador.getCarrinhoDeCompras().contains("Item 2"));
+    }
+
+    @Test
+    public void testLimparCarrinho() {
+        Comprador comprador = new Comprador();
+        comprador.adicionarAoCarrinho("Item 1");
+        comprador.adicionarAoCarrinho("Item 2");
+
+        comprador.limparCarrinho();
+
+        assertEquals(0, comprador.getCarrinhoDeCompras().size());
+    }
+
+    @Test
+    public void testExibirCarrinhoDeCompras() {
+        Comprador comprador = new Comprador();
+        comprador.adicionarAoCarrinho("Item 1");
+        comprador.adicionarAoCarrinho("Item 2");
+
+        // Mock System.out.println()
+        StringBuilder output = new StringBuilder();
+        System.setOut(new java.io.PrintStream(new java.io.ByteArrayOutputStream() {
+            @Override
+            public void write(byte[] b, int off, int len) {
+                output.append(new String(b, off, len));
+            }
+        }));
+
+        comprador.exibirCarrinhoDeCompras();
+        System.setOut(System.out);
+
+        String expectedOutput = "Itens no Carrinho de Compras:" + System.lineSeparator() +
+                "Item 1" + System.lineSeparator() +
+                "Item 2" + System.lineSeparator();
+
+        assertEquals(expectedOutput, output.toString(), "A saída não corresponde ao valor esperado.");
     }
 
     @Test
