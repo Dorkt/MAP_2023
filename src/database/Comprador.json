@@ -5,4 +5,20 @@
   "senha" : "123456789",
   "cpf" : "445645656",
   "endereco" : "testes"
+}, {
+  "id" : 2,
+  "nome" : "Lara",
+  "email" : "laljiase@gmail.com",
+  "senha" : "123456",
+  "cpf" : "115656644",
+  "endereco" : "shadhasysadg",
+  "carrinhoDeCompras" : [ ]
+}, {
+  "id" : 3,
+  "nome" : "Lara",
+  "email" : "lara@gmail.com",
+  "senha" : "123456",
+  "cpf" : "1234465",
+  "endereco" : "skkasrsadkf",
+  "carrinhoDeCompras" : [ ]
 } ]
