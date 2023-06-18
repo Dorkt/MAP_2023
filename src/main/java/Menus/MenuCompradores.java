@@ -47,7 +47,9 @@ public class MenuCompradores {
         System.out.println("4 - Listar todos os Compradores.");
         System.out.println("5 - Adicionar produto ao carrinho.");
         System.out.println("6 - Listar produtos no carrinho.");
-        System.out.println("7 - Finalizar compra do carrinho");
+        System.out.println("7 - Remover produto do carrinho");
+        System.out.println("8 - Finalizar compra do carrinho");
+        System.out.println("9 - Listar todos os Produtos.");
         System.out.println("0 - Sair do Sistema de Compradores.\n");
         System.out.print("Digite a sua Opção: ");
     }
@@ -93,7 +95,15 @@ public class MenuCompradores {
                 break;
 
             case "7":
+                this.removerProdutoDoCarrinho();
+                break;
+
+            case "8":
                 this.finalizarCompraDoCarrinho();
+                break;
+
+            case "9":
+                this.listarTodosProdutos(controladorProduto.readData("Produto"));
                 break;
 
             case "0":
@@ -211,6 +221,45 @@ public class MenuCompradores {
 
         if (resposta.equalsIgnoreCase("S")) {
             compradorLogado.exibirHistoricoCompras();
+        }
+    }
+
+    private void removerProdutoDoCarrinho() {
+        System.out.print("\nDigite o id do produto que deseja retirar do carrinho: ");
+        String input = entrada.nextLine();
+        int idProduto = Integer.parseInt(input);
+        List<Produto> produtosCarrinho = compradorLogado.getCarrinhoDeCompras();
+
+        for (Produto produto: produtosCarrinho) {
+            if (produto.getId() == idProduto) {
+                compradorLogado.removerDoCarrinho(produto);
+                break;
+            }
+        }
+    }
+
+    private void listarTodosProdutos(List<Object> listaDeDados) {
+        for (Object objeto : listaDeDados) {
+            if (objeto instanceof Map) {
+                Map<?, ?> mapa = (Map<?, ?>) objeto;
+
+                String id = obterValor(mapa, "id");
+                String nome = obterValor(mapa, "nome");
+                String valor = obterValor(mapa, "valor");
+                String tipo = obterValor(mapa, "tipo");
+                String quantidade = obterValor(mapa, "quantidade");
+                String marca = obterValor(mapa, "marca");
+                String descricao = obterValor(mapa, "descricao");
+
+                System.out.println("Id: " + id);
+                System.out.println("Nome: " + nome);
+                System.out.println("Valor: " + valor);
+                System.out.println("Tipo: " + tipo);
+                System.out.println("Quantidade: " + quantidade);
+                System.out.println("Marca: " + marca);
+                System.out.println("Descrição: " + descricao);
+                System.out.println("-------------------------");
+            }
         }
     }
 }
