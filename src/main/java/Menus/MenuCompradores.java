@@ -46,7 +46,8 @@ public class MenuCompradores {
         System.out.println("4 - Listar todos os Compradores.");
         System.out.println("5 - Adicionar produto ao carrinho.");
         System.out.println("6 - Listar produtos no carrinho.");
-        System.out.println("7 - Finalizar compra do carrinho");
+        System.out.println("7 - Remover produto do carrinho");
+        System.out.println("8 - Finalizar compra do carrinho");
         System.out.println("9 - Listar todos os Produtos.");
         System.out.println("0 - Sair do Sistema de Compradores.\n");
         System.out.print("Digite a sua Opção: ");
@@ -93,6 +94,10 @@ public class MenuCompradores {
                 break;
 
             case "7":
+                this.removerProdutoDoCarrinho();
+                break;
+
+            case "8":
                 this.finalizarCompraDoCarrinho();
                 break;
 
@@ -196,6 +201,20 @@ public class MenuCompradores {
             }
         }
         compradorLogado.esvaziarCarrinhoDeCompras();
+    }
+
+    private void removerProdutoDoCarrinho() {
+        System.out.print("\nDigite o id do produto que deseja retirar do carrinho: ");
+        String input = entrada.nextLine();
+        int idProduto = Integer.parseInt(input);
+        List<Produto> produtosCarrinho = compradorLogado.getCarrinhoDeCompras();
+
+        for (Produto produto: produtosCarrinho) {
+            if (produto.getId() == idProduto) {
+                compradorLogado.removerDoCarrinho(produto);
+                break;
+            }
+        }
     }
 
     private void listarTodosProdutos(List<Object> listaDeDados) {
