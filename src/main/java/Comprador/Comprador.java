@@ -94,6 +94,10 @@ public class Comprador {
         return carrinhoDeCompras;
     }
 
+    public void esvaziarCarrinhoDeCompras() {
+        this.carrinhoDeCompras = new ArrayList<Produto>();
+    }
+
     // Limpar o carrinho de compras
     public void limparCarrinho() {
         carrinhoDeCompras.clear();

@@ -7,7 +7,7 @@ public class Produto{
     private String tipo;
     private int quantidade;
     private String marca;
-    private String descricao;    
+    private String descricao;
 
     // Generic Constructor
     public Produto(String nome, double valor, String tipo, int quantidade, String marca, String descricao){

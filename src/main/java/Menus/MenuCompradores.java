@@ -5,6 +5,7 @@ import java.util.Scanner;
 import Comprador.ControladorComprador;
 import Comprador.Comprador;
 import Produto.Produto;
+import Produto.ControladorProduto;
 
 public class MenuCompradores {
     // Creation of variables/attributes
@@ -12,6 +13,7 @@ public class MenuCompradores {
     private Scanner entrada = new Scanner(System.in);
     private String escolha;
     private ControladorComprador controladorComprador = new ControladorComprador();
+    private ControladorProduto controladorProduto = new ControladorProduto();
 
     private Comprador compradorLogado = controladorComprador.selecionarCompradorLogado();
 
@@ -44,6 +46,7 @@ public class MenuCompradores {
         System.out.println("4 - Listar todos os Compradores.");
         System.out.println("5 - Adicionar produto ao carrinho.");
         System.out.println("6 - Listar produtos no carrinho.");
+        System.out.println("7 - Finalizar compra do carrinho");
         System.out.println("0 - Sair do Sistema de Compradores.\n");
         System.out.print("Digite a sua Opção: ");
     }
@@ -86,6 +89,10 @@ public class MenuCompradores {
 
             case "6":
                 this.listarProdutosNoCarrinho();
+                break;
+
+            case "7":
+                this.finalizarCompraDoCarrinho();
                 break;
 
             case "0":
@@ -171,5 +178,18 @@ public class MenuCompradores {
         for (Produto produto: produtosCarrinho) {
             produto.exibirProduto();
         }
+    }
+
+    private void finalizarCompraDoCarrinho() {
+        List<Produto> produtosCarrinho = compradorLogado.getCarrinhoDeCompras();
+
+        for (Produto produto: produtosCarrinho) {
+            try {
+                controladorProduto.comprarProduto(produto.getId());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Não foi possível comprar o produto: " + e.getMessage());
+            }
+        }
+        compradorLogado.esvaziarCarrinhoDeCompras();
     }
 }
