@@ -3,6 +3,7 @@ package Comprador;
 import Produto.Produto;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class Comprador {
     private int id;
@@ -24,11 +25,14 @@ public class Comprador {
         this.senha = senha;
         this.cpf = cpf;
         this.endereco = endereco;
+        this.carrinhoDeCompras = new ArrayList<Produto>();
     }
 
     // Adicionando construtor vazio para que a biblioteca que lê os dados persistidos conseguir converter os tipos para
     // o dessa classe
-    public Comprador() {}
+    public Comprador() {
+        this.carrinhoDeCompras = new ArrayList<Produto>();
+    }
 
     // Getters e Setters
 

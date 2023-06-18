@@ -1,7 +1,6 @@
 package Comprador;
 
 import Controlador.Controlador;
-import Loja.Loja;
 import Produto.Produto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ControladorComprador extends Controlador {
-    public String addProdutoAoCarrinho(int idProduto) {
+    public void addProdutoAoCarrinho(int idProduto, Comprador compradorLogado) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -32,13 +31,32 @@ public class ControladorComprador extends Controlador {
             for (Produto objeto : objetosExistentes) {
                 // Suponha que cada objeto tenha um método getId() que retorna o ID
                 if (objeto.getId() == idProduto) {
-                    System.out.println("Achamos");
                     objeto.exibirProduto();
+                    compradorLogado.adicionarAoCarrinho(objeto);
+
                 }
             }
         } catch (IOException e) {
             System.err.println("Ocorreu um erro ao salvar os dados no arquivo JSON: " + e.getMessage());
         }
-        return "Objeto encontrado e adicionado ao carrinho";
+        System.out.println("Produto encontrado e adicionado ao carrinho");
+    }
+
+    public Comprador selecionarCompradorLogado() {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+            String diretorioProjeto = System.getProperty("user.dir");
+            String caminhoFinal = diretorioProjeto + File.separator + "src" + File.separator + "database" + File.separator + "loggedUser.json";
+
+            File arquivoJson = new File(caminhoFinal);
+            Comprador compradorExistente = objectMapper.readValue(arquivoJson, Comprador.class);
+            return compradorExistente;
+        } catch (IOException e) {
+            System.err.println("Ocorreu um erro ao selecionar o comprador logado: " + e.getMessage());
+        }
+
+        return new Comprador();
     }
 }

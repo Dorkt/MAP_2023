@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import Comprador.ControladorComprador;
+import Comprador.Comprador;
+import Produto.Produto;
 
 public class MenuCompradores {
     // Creation of variables/attributes
@@ -10,6 +12,8 @@ public class MenuCompradores {
     private Scanner entrada = new Scanner(System.in);
     private String escolha;
     private ControladorComprador controladorComprador = new ControladorComprador();
+
+    private Comprador compradorLogado = controladorComprador.selecionarCompradorLogado();
 
     public MenuCompradores(){
         this.textoInicialMenuComprador();
@@ -155,10 +159,17 @@ public class MenuCompradores {
         System.out.print("\nDigite o id do produto que deseja adicionar ao carrinho: ");
         String input = entrada.nextLine();
         int id = Integer.parseInt(input);
-        controladorComprador.addProdutoAoCarrinho(id);
+        controladorComprador.addProdutoAoCarrinho(id, compradorLogado);
     }
 
     private void listarProdutosNoCarrinho() {
-        System.out.println("Sendo desenvolvido");
+        System.out.println("Produtos no carrinho");
+        System.out.println("--------------------");
+
+        List<Produto> produtosCarrinho = compradorLogado.getCarrinhoDeCompras();
+
+        for (Produto produto: produtosCarrinho) {
+            produto.exibirProduto();
+        }
     }
 }
