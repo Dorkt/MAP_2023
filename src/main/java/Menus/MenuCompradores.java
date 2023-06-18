@@ -1,4 +1,5 @@
 package Menus;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -36,13 +37,13 @@ public class MenuCompradores {
         System.out.println("|************* Bem Vindo ao seu Sistema de Compradores ************|");
         System.out.println("--------------------------------------------------------------------\n");
     }
-    
+
     //Method created to show choice information
     private void textoSelecaoDaEntradaMenuComprador(){
         System.out.println("Escolha Uma Opção abaixo.");
         System.out.println("1 - Buscar Comprador.");
-        System.out.println("2 - Atualizar Seus dados.");        
-        System.out.println("3 - Remover conta Comprador.");        
+        System.out.println("2 - Atualizar Seus dados.");
+        System.out.println("3 - Remover conta Comprador.");
         System.out.println("4 - Listar todos os Compradores.");
         System.out.println("5 - Adicionar produto ao carrinho.");
         System.out.println("6 - Listar produtos no carrinho.");
@@ -60,19 +61,19 @@ public class MenuCompradores {
     private void excluirDadosPorId(){
         System.out.print("\nDigite o id do Comprador para excluir :");
         int id = entrada.nextInt();
-        controladorComprador.deleteData(id, "Comprador");        
+        controladorComprador.deleteData(id, "Comprador");
     }
 
     //Method created to check which option was chosen
     private void verificaEscolhaMenuComprador(String opcao){
         //Falta implementar os sub-menus
         switch(opcao){
-            case "1":            
-                this.buscarCompradorPorID();                
+            case "1":
+                this.buscarCompradorPorID();
                 break;
 
             case "2":
-                     this.atualizarInformacaoDoNome();           
+                     this.atualizarInformacaoDoNome();
                 break;
 
             case "3":
@@ -80,7 +81,7 @@ public class MenuCompradores {
                 break;
 
             case "4":
-                    this.imprimirDadosDeTodosOsCompradores(controladorComprador.readData("Comprador"));            
+                    this.imprimirDadosDeTodosOsCompradores(controladorComprador.readData("Comprador"));
                 break;
 
             case "5":
@@ -129,12 +130,12 @@ public class MenuCompradores {
         for (Object objeto : listaDeDados) {
             if (objeto instanceof Map) {
                 Map<?, ?> mapa = (Map<?, ?>) objeto;
-                
+
                 String id = obterValor(mapa, "id");
                 String nome = obterValor(mapa, "nome");
                 String email = obterValor(mapa, "email");
                 String endereco = obterValor(mapa, "endereco");
-    
+
                 System.out.println("Id: " + id);
                 System.out.println("Nome: " + nome);
                 System.out.println("Email: " + email);
@@ -143,7 +144,7 @@ public class MenuCompradores {
             }
         }
     }
-    
+
     private String obterValor(Map<?, ?> mapa, String chave) {
         Object valor = mapa.get(chave);
         if (valor != null) {
@@ -182,14 +183,34 @@ public class MenuCompradores {
 
     private void finalizarCompraDoCarrinho() {
         List<Produto> produtosCarrinho = compradorLogado.getCarrinhoDeCompras();
+        List<Produto> produtosComprados = new ArrayList<>();
 
-        for (Produto produto: produtosCarrinho) {
+        for (Produto produto : produtosCarrinho) {
             try {
                 controladorProduto.comprarProduto(produto.getId());
+                produtosComprados.add(produto);
             } catch (IllegalArgumentException e) {
                 System.out.println("Não foi possível comprar o produto: " + e.getMessage());
             }
         }
+
+        compradorLogado.adicionarCompra(produtosComprados);
         compradorLogado.esvaziarCarrinhoDeCompras();
+
+        System.out.println("Produtos comprados:");
+        System.out.println("--------------------");
+
+        for (Produto produto : produtosComprados) {
+            System.out.println("ID: " + produto.getId());
+            System.out.println("Nome: " + produto.getNome());
+            System.out.println("--------------------");
+        }
+
+        // Verificar se o usuário deseja visualizar o histórico de compras
+        String resposta = entrada.nextLine();
+
+        if (resposta.equalsIgnoreCase("S")) {
+            compradorLogado.exibirHistoricoCompras();
+        }
     }
 }

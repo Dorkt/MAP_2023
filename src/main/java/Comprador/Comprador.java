@@ -13,6 +13,7 @@ public class Comprador {
     private String cpf;
     private String endereco;
     private List<Produto> carrinhoDeCompras;
+    private List<Produto> historicoCompras;
 
     public Comprador(String nome, String email, String senha, String cpf, String endereco) {
         ControladorComprador t = new ControladorComprador();
@@ -26,12 +27,14 @@ public class Comprador {
         this.cpf = cpf;
         this.endereco = endereco;
         this.carrinhoDeCompras = new ArrayList<Produto>();
+        this.historicoCompras = new ArrayList<Produto>();
     }
 
     // Adicionando construtor vazio para que a biblioteca que lê os dados persistidos conseguir converter os tipos para
     // o dessa classe
     public Comprador() {
         this.carrinhoDeCompras = new ArrayList<Produto>();
+        this.historicoCompras = new ArrayList<Produto>();
     }
 
     // Getters e Setters
@@ -118,5 +121,17 @@ public class Comprador {
         System.out.println("E-mail: " + email);
         System.out.println("CPF: " + cpf);
         System.out.println("Endereço: " + endereco);
+    }
+
+    // Método para adicionar uma compra ao histórico
+    public void adicionarCompra(List<Produto> produtos) {
+        historicoCompras.addAll(produtos);
+    }
+
+    // Método para exibir o histórico de compras
+    public void exibirHistoricoCompras() {
+        for (Produto produto : historicoCompras) {
+            System.out.println(produto);
+        }
     }
 }
