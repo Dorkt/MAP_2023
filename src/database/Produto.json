@@ -1,1 +1,9 @@
-[ ]
+[ {
+  "id" : 2,
+  "nome" : "Novo produto 1",
+  "valor" : 159.0,
+  "tipo" : "roupa",
+  "quantidade" : 1447,
+  "marca" : "nike",
+  "descricao" : "super roupa da nike"
+} ]

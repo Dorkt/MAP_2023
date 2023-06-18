@@ -76,7 +76,7 @@ public class MenuLoja {
     }
 
     private void excluirDadosPorId(){
-        System.out.print("\nDigite o id do Comprador para excluir :");
+        System.out.print("\nDigite o id da Loja para excluir :");
         int id = entrada.nextInt();
         controladorLoja.deleteData(id, "Loja");        
     }

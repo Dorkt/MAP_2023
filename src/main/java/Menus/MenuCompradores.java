@@ -37,7 +37,9 @@ public class MenuCompradores {
         System.out.println("1 - Buscar Comprador.");
         System.out.println("2 - Atualizar Seus dados.");        
         System.out.println("3 - Remover conta Comprador.");        
-        System.out.println("4 - Listar todos os Compradores.");       
+        System.out.println("4 - Listar todos os Compradores.");
+        System.out.println("5 - Adicionar produto ao carrinho.");
+        System.out.println("6 - Listar produtos no carrinho.");
         System.out.println("0 - Sair do Sistema de Compradores.\n");
         System.out.print("Digite a sua Opção: ");
     }
@@ -72,6 +74,14 @@ public class MenuCompradores {
 
             case "4":
                     this.imprimirDadosDeTodosOsCompradores(controladorComprador.readData("Comprador"));            
+                break;
+
+            case "5":
+                this.adicionarProdutoAoCarrinho();
+                break;
+
+            case "6":
+                this.listarProdutosNoCarrinho();
                 break;
 
             case "0":
@@ -138,7 +148,17 @@ public class MenuCompradores {
         int id = Integer.parseInt(input);
         System.out.print("\nDigite o novo nome: ");
         String nome = entrada.nextLine();
-        controladorComprador.updateData("Comprador", id, nome);        
+        controladorComprador.updateData("Comprador", id, nome);
+    }
 
+    private void adicionarProdutoAoCarrinho() {
+        System.out.print("\nDigite o id do produto que deseja adicionar ao carrinho: ");
+        String input = entrada.nextLine();
+        int id = Integer.parseInt(input);
+        controladorComprador.addProdutoAoCarrinho(id);
+    }
+
+    private void listarProdutosNoCarrinho() {
+        System.out.println("Sendo desenvolvido");
     }
 }

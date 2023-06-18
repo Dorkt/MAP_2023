@@ -81,4 +81,15 @@ public class Produto{
     public int getId(){
         return this.id;
     }
+
+    // Método para exibir os dados da loja
+    public void exibirProduto() {
+        System.out.println("ID: " + this.id);
+        System.out.println("Nome: " + this.nome);
+        System.out.println("Valor: R$" + this.valor);
+        System.out.println("Tipo de produto " + this.tipo);
+        System.out.println("Quantidade: " + this.quantidade);
+        System.out.println("Marca: " + this.marca);
+        System.out.println("Descrição: " + this.descricao);
+    }
 }

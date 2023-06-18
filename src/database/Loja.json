@@ -6,10 +6,10 @@
   "cpfCnpj" : "57574547457",
   "endereco" : "rua teste"
 }, {
-  "id" : 2,
-  "nome" : "a",
-  "email" : "a",
-  "senha" : "123",
-  "cpfCnpj" : "12345",
-  "endereco" : "123"
+  "id" : 3,
+  "nome" : "Loja 1",
+  "email" : "loja@mail.com",
+  "senha" : "loja123",
+  "cpfCnpj" : "159753",
+  "endereco" : "rua das manguabeiras"
 } ]

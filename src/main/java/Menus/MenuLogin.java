@@ -1,4 +1,5 @@
 package Menus;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Comprador.ControladorComprador;
 import Loja.ControladorLoja;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class MenuLogin{
     // Creation of variables/attributes
@@ -104,6 +106,20 @@ public class MenuLogin{
             }
     
             if (encontrouEmail && encontrouSenha) {
+                ObjectMapper objectMapper = new ObjectMapper();
+                objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+                String diretorioProjeto = System.getProperty("user.dir");
+                String caminhoArquivo = diretorioProjeto + File.separator + "src" + File.separator + "database" + File.separator;
+                try {
+                    String caminhoFinal = caminhoArquivo + "loggedUser.json";
+                    File arquivoJson = new File(caminhoFinal);
+
+                    objectMapper.writeValue(arquivoJson, elemento);
+                } catch (IOException e) {
+                    System.err.println("Ocorreu um erro ao logar o usuário no sistema: " + e.getMessage());
+                }
+
                 return 1; // Encontrou email e senha correspondentes na lista de dados
             }
         }
