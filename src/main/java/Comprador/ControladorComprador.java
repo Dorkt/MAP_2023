@@ -59,4 +59,73 @@ public class ControladorComprador extends Controlador {
 
         return new Comprador();
     }
+
+    public void adicionarProdutoAoHistorico(Produto prod, Comprador comp) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        String diretorioProjeto = System.getProperty("user.dir");
+        String caminhoFinal = diretorioProjeto + File.separator + "src" + File.separator + "database" + File.separator + "Comprador.json";
+        File arquivoJson = new File(caminhoFinal);
+
+        // Criar o tipo concreto que representa a lista de objetos esperada
+        TypeFactory typeFactory = objectMapper.getTypeFactory();
+
+        try {
+            CollectionType listType = typeFactory.constructCollectionType(List.class, Comprador.class);
+
+            List<Comprador> objetosExistentes = objectMapper.readValue(arquivoJson, listType);
+
+            // Encontrar o objeto com o ID desejado e atualizar o nome
+            for (Comprador comprador : objetosExistentes) {
+                if (comprador.getId() == comp.getId()) {
+                    comprador.adicionarCompra(prod);
+                    break;
+                }
+            }
+            // Salvar os dados atualizados no arquivo JSON
+            objectMapper.writeValue(arquivoJson, objetosExistentes);
+        } catch (IOException e) {
+            System.err.println("Ocorreu um erro ao adicionar um produto ao historico: " + e.getMessage());
+        }
+    }
+
+    public void mostrarHistoricoDeCompras(Comprador comp) {
+        int contador = 1;
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        String diretorioProjeto = System.getProperty("user.dir");
+        String caminhoFinal = diretorioProjeto + File.separator + "src" + File.separator + "database" + File.separator + "Comprador.json";
+        File arquivoJson = new File(caminhoFinal);
+
+        // Criar o tipo concreto que representa a lista de objetos esperada
+        TypeFactory typeFactory = objectMapper.getTypeFactory();
+
+        try {
+            CollectionType listType = typeFactory.constructCollectionType(List.class, Comprador.class);
+
+            List<Comprador> objetosExistentes = objectMapper.readValue(arquivoJson, listType);
+            List<Produto> produtos = new ArrayList<>();
+
+            // Encontrar o objeto com o ID desejado e atualizar o nome
+            for (Comprador comprador : objetosExistentes) {
+                if (comprador.getId() == comp.getId()) {
+                    produtos = comprador.getHistoricoComprasDeCompras();
+                }
+            }
+
+            for (Produto prod : produtos) {
+                System.out.println("Histórico de compras");
+                System.out.println("Compra " + contador);
+                prod.exibirProduto();
+                System.out.println("--------------------------------");
+                contador++;
+            }
+            // Salvar os dados atualizados no arquivo JSON
+            objectMapper.writeValue(arquivoJson, objetosExistentes);
+        } catch (IOException e) {
+            System.err.println("Ocorreu um erro ao atualizar o dado no arquivo JSON: " + e.getMessage());
+        }
+    }
 }

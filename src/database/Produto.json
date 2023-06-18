@@ -3,11 +3,7 @@
   "nome" : "Novo produto 1",
   "valor" : 159.0,
   "tipo" : "roupa",
-<<<<<<< HEAD
-  "quantidade" : 1432,
-=======
-  "quantidade" : 1438,
->>>>>>> d627d81dcd2c39fce40e2260066b18f8c95ea418
+  "quantidade" : 1435,
   "marca" : "nike",
   "descricao" : "super roupa da nike"
 }, {

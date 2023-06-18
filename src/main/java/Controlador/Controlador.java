@@ -42,10 +42,11 @@ public class Controlador {
                 String caminhoFinal = caminhoArquivo + "Comprador.json";
                 File arquivoJson = new File(caminhoFinal);
 
-                List<Object> objetosExistentes = objectMapper.readValue(arquivoJson, List.class);
+                List<Comprador> objetosExistentes = objectMapper.readValue(arquivoJson, List.class);
 
-                List<Object> objetosAtualizados = new ArrayList<>(objetosExistentes);
-                objetosAtualizados.add(obj);
+                List<Comprador> objetosAtualizados = new ArrayList<>(objetosExistentes);
+                System.out.println("AAAAAAAAAAAAAAAAAAAA" + obj);
+                objetosAtualizados.add((Comprador)obj);
 
                 objectMapper.writeValue(arquivoJson, objetosAtualizados);
                 System.out.println("Comprador inserido com sucesso!");

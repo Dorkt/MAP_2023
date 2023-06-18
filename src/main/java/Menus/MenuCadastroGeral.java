@@ -172,11 +172,11 @@ public class MenuCadastroGeral {
 
     private void salvarDados(){
 
-        if(this.tipoDeCadastro.equals("1")){
+        if (this.tipoDeCadastro.equals("1")) {
             this.loja = new Loja(this.nome, this.email, this.senha, this.cpfCnpj, this.endereco);
             this.controladorLoja.insertData(this.loja);
         }
-        else{
+        else {
             this.comprador = new Comprador(this.nome, this.email, this.senha, this.cpfCnpj, this.endereco);
             this.controladorComprador.insertData(this.comprador);
         }
