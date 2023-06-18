@@ -50,6 +50,7 @@ public class MenuCompradores {
         System.out.println("7 - Remover produto do carrinho");
         System.out.println("8 - Finalizar compra do carrinho");
         System.out.println("9 - Listar todos os Produtos.");
+        System.out.println("10 - Listar histórico de compras.");
         System.out.println("0 - Sair do Sistema de Compradores.\n");
         System.out.print("Digite a sua Opção: ");
     }
@@ -104,6 +105,10 @@ public class MenuCompradores {
 
             case "9":
                 this.listarTodosProdutos(controladorProduto.readData("Produto"));
+                break;
+
+            case "10":
+                this.controladorComprador.mostrarHistoricoDeCompras(this.compradorLogado);
                 break;
 
             case "0":
@@ -193,35 +198,18 @@ public class MenuCompradores {
 
     private void finalizarCompraDoCarrinho() {
         List<Produto> produtosCarrinho = compradorLogado.getCarrinhoDeCompras();
-        List<Produto> produtosComprados = new ArrayList<>();
 
         for (Produto produto : produtosCarrinho) {
             try {
                 controladorProduto.comprarProduto(produto.getId());
-                produtosComprados.add(produto);
+                compradorLogado.adicionarCompra(produto);
+                controladorComprador.adicionarProdutoAoHistorico(produto, compradorLogado);
             } catch (IllegalArgumentException e) {
                 System.out.println("Não foi possível comprar o produto: " + e.getMessage());
             }
         }
 
-        compradorLogado.adicionarCompra(produtosComprados);
         compradorLogado.esvaziarCarrinhoDeCompras();
-
-        System.out.println("Produtos comprados:");
-        System.out.println("--------------------");
-
-        for (Produto produto : produtosComprados) {
-            System.out.println("ID: " + produto.getId());
-            System.out.println("Nome: " + produto.getNome());
-            System.out.println("--------------------");
-        }
-
-        // Verificar se o usuário deseja visualizar o histórico de compras
-        String resposta = entrada.nextLine();
-
-        if (resposta.equalsIgnoreCase("S")) {
-            compradorLogado.exibirHistoricoCompras();
-        }
     }
 
     private void removerProdutoDoCarrinho() {
