@@ -7,6 +7,7 @@ import Loja.ControladorLoja;
 import Loja.Loja;
 
 public class MenuCadastroGeral {
+    
     private boolean continuar = true;
     private String tipoDeCadastro;
     private int ateOndePreencheuOsDados = 0;

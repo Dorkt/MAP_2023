@@ -2,16 +2,15 @@ package Menus;
 
 import java.util.List;
 import java.util.Scanner;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import Loja.ControladorLoja;
 import Loja.Loja;
 import Produto.ControladorProduto;
 import Produto.Produto;
 
 public class MenuProduto {
+
     // Creation of variables/attributes
     private boolean controlador = true;
     private Scanner entrada = new Scanner(System.in);
@@ -150,7 +149,6 @@ public class MenuProduto {
             System.out.println("Nenhuma correspondência encontrada para o ID: " + id);
         }
     }
-
 
     private void excluirDados(int id, List<Object> jsonData) {
         controladorProduto.deleteData(id, "Produto");

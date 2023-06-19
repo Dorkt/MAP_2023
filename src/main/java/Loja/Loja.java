@@ -1,4 +1,5 @@
 package Loja;
+
 public class Loja {
     private int id;
     private String nome;

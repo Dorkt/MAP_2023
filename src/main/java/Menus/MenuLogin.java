@@ -1,10 +1,10 @@
 package Menus;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import Comprador.ControladorComprador;
 import Loja.ControladorLoja;
 import com.fasterxml.jackson.databind.SerializationFeature;

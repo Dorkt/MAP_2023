@@ -1,11 +1,11 @@
 package Comprador;
 
 import Produto.Produto;
-
 import java.util.List;
 import java.util.ArrayList;
 
 public class Comprador {
+
     private int id;
     private String nome;
     private String email;
@@ -38,7 +38,6 @@ public class Comprador {
     }
 
     // Getters e Setters
-
     public int getId() {
         return this.id;
     }
