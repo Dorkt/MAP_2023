@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import Loja.ControladorLoja;
+import Loja.Loja;
 
 public class MenuLoja {
     // Creation of variables/attributes
@@ -11,6 +12,7 @@ public class MenuLoja {
     private Scanner entrada = new Scanner(System.in);
     private String escolha;
     private ControladorLoja controladorLoja = new ControladorLoja();
+    private Loja lojaLogada = controladorLoja.selecionarLojaLogada();
 
     public MenuLoja(){
         this.textoInicialMenuLoja();
@@ -35,9 +37,9 @@ public class MenuLoja {
         System.out.println("Escolha Uma Opção abaixo.");
         System.out.println("1 - Buscar Loja.");
         System.out.println("2 - Atualizar Loja.");        
-        System.out.println("3 - Remover Loja.");        
+        System.out.println("3 - Remover sua Loja.");        
         System.out.println("4 - Listar todas as Lojas.");        
-        System.out.println("5 - Cadastrar produtos.");         
+        System.out.println("5 - Menu produto.");         
         System.out.println("0 - Sair do Sistema de Lojas.\n");
         System.out.print("Digite a sua Opção: ");
     }
@@ -76,9 +78,21 @@ public class MenuLoja {
     }
 
     private void excluirDadosPorId(){
-        System.out.print("\nDigite o id da Loja para excluir :");
-        int id = entrada.nextInt();
-        controladorLoja.deleteData(id, "Loja");        
+
+        System.out.print("\nDeseja realmente excluir sua loja? S = Sim | Qualquer outra entrada = Nao:");
+        System.out.print("\nDigite a opção: ");
+        String opcao = entrada.nextLine();
+        opcao = opcao.toUpperCase();
+
+        if(opcao.equals("S")){
+            controladorLoja.deleteData(lojaLogada.getId(), "Loja");
+            System.out.println("\nDados excluidos...");
+            this.controlador = false;
+        }
+        else{
+            System.out.println("\nVoltando...");
+        }
+        //controladorLoja.deleteData(id, "Loja");        
     }
 
     private void buscarLojaPorID(){
@@ -95,7 +109,6 @@ public class MenuLoja {
                 Object valorId = mapa.get("id");
                 if (valorId != null && valorId.toString().equals(id)) {
                     // Mostra os campos desejados
-                    System.out.println("ID: " + mapa.get("id"));
                     System.out.println("Nome: " + mapa.get("nome"));
                     System.out.println("Email: " + mapa.get("email"));
                     System.out.println("Endereço: " + mapa.get("endereco"));
@@ -110,30 +123,26 @@ public class MenuLoja {
     private void imprimirDadosDeTodasLojas(List<Object> listaDeDados) {
         for (Object objeto : listaDeDados) {
             if (objeto instanceof Map) {
-                Map<?, ?> mapa = (Map<?, ?>) objeto;
-                
-                String id = obterValor(mapa, "id");
-                String nome = obterValor(mapa, "nome");
-                String email = obterValor(mapa, "email");
-                String endereco = obterValor(mapa, "endereco");
-    
-                System.out.println("Id: " + id);
-                System.out.println("Nome: " + nome);
-                System.out.println("Email: " + email);
-                System.out.println("Endereço: " + endereco);
-                System.out.println("-------------------------");
+            Map<?, ?> mapa = (Map<?, ?>) objeto;
+            String id = obterValor(mapa, "id");
+            String nome = obterValor(mapa, "nome");
+            String email = obterValor(mapa, "email");
+            String endereco = obterValor(mapa, "endereco");
+
+            System.out.println("ID: " + id);
+            System.out.println("Nome: " + nome);
+            System.out.println("Email: " + email);
+            System.out.println("Endereço: " + endereco);
+            System.out.println("-------------------------");
             }
         }
     }
 
     private void atualizarInformacaoDoNome(){
-        System.out.print("\nDigite o id para atualizar o nome da Loja: ");
-        String input = entrada.nextLine();
-        int id = Integer.parseInt(input);
+        int id = lojaLogada.getId();
         System.out.print("\nDigite o novo nome: ");
         String nome = entrada.nextLine();
-        controladorLoja.updateData("Loja", id, nome);        
-
+        controladorLoja.updateData("Loja", id, nome);  
     }
 
     private String obterValor(Map<?, ?> mapa, String chave) {

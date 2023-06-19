@@ -3,13 +3,13 @@
   "nome" : "olx",
   "email" : "olx@gmail.com",
   "senha" : "123456",
-  "cpfCnpj" : "57574547457",
-  "endereco" : "rua teste"
+  "cpfCnpj" : "34534534534587",
+  "endereco" : "rua olx"
 }, {
-  "id" : 3,
-  "nome" : "Loja 1",
-  "email" : "loja@mail.com",
-  "senha" : "loja123",
-  "cpfCnpj" : "159753",
-  "endereco" : "rua das manguabeiras"
+  "id" : 2,
+  "nome" : "asd",
+  "email" : "asd@gmail.com",
+  "senha" : "123456",
+  "cpfCnpj" : "234234235432",
+  "endereco" : "asdasdsad"
 } ]

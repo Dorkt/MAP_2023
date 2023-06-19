@@ -1,17 +1,28 @@
 [ {
   "id" : 2,
-  "nome" : "Novo produto 1",
-  "valor" : 159.0,
-  "tipo" : "roupa",
-  "quantidade" : 1435,
-  "marca" : "nike",
-  "descricao" : "super roupa da nike"
+  "idDaLoja" : 1,
+  "nome" : "caixa de som",
+  "valor" : 850.0,
+  "tipo" : "coisas",
+  "quantidade" : 5,
+  "marca" : "test",
+  "descricao" : "apenas uma caixa de som"
 }, {
   "id" : 3,
-  "nome" : "MegaSuperProduto",
-  "valor" : 170.0,
+  "idDaLoja" : 1,
+  "nome" : "roupa",
+  "valor" : 200.0,
   "tipo" : "roupa",
-  "quantidade" : 0,
+  "quantidade" : 2,
   "marca" : "nike",
-  "descricao" : "super roupa da nike"
+  "descricao" : "apenas uma roupa"
+}, {
+  "id" : 4,
+  "idDaLoja" : 2,
+  "nome" : "refrigerante",
+  "valor" : 8.0,
+  "tipo" : "liquido",
+  "quantidade" : 6,
+  "marca" : "coca cola",
+  "descricao" : "um refrigerante"
 } ]

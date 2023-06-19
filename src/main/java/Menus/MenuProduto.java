@@ -1,19 +1,15 @@
 package Menus;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import javax.tools.JavaFileObject;
 
-import Produto.ControladorProduto;
-import Produto.Produto;
+import java.util.List;
+import java.util.Scanner;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import Comprador.ControladorComprador;
+
+import Loja.ControladorLoja;
+import Loja.Loja;
+import Produto.ControladorProduto;
+import Produto.Produto;
 
 public class MenuProduto {
     // Creation of variables/attributes
@@ -21,6 +17,8 @@ public class MenuProduto {
     private Scanner entrada = new Scanner(System.in);
     private String escolha;
     private ControladorProduto controladorProduto = new ControladorProduto();
+    private ControladorLoja controlLoja = new ControladorLoja();
+    private Loja lojaLogada = controlLoja.selecionarLojaLogada();
 
     public MenuProduto(){
         this.textoInicialMenuProduto();
@@ -53,34 +51,9 @@ public class MenuProduto {
         System.out.print("Digite a sua Opção: ");
     }
 
-    private void cadastrarNovoProduto(){
-        System.out.println("\n");
-
-        System.out.println("Digite o nome do novo produto: ");
-        String name = this.entrada.nextLine();
-        System.out.println("Digite o valor do produto: ");
-        String valor = this.entrada.nextLine();
-        System.out.println("Digite o tipo do produto: ");
-        String tipo = this.entrada.nextLine();
-        System.out.println("Digite a quantidade de produtos: ");
-        String quantidade = this.entrada.nextLine();
-        System.out.println("Digite a marca do produto: ");
-        String marca = this.entrada.nextLine();
-        System.out.println("Digite a descrição do produto: ");
-        String description = this.entrada.nextLine();
-        Produto insertProduto = new Produto(name, Double.parseDouble(valor), tipo, Integer.parseInt(quantidade), marca, description);
-        controladorProduto.insertData(insertProduto);
-    }
-
-    private void excluirDadosPorId(){
-        System.out.print("\nDigite o id do Comprador para excluir :");
-        int id = entrada.nextInt();
-        this.excluirDados(id, controladorProduto.readData("Produto"));
-    }
-
     //Method created to check which option was chosen
     private void verificaEscolhaMenuProduto(String opcao){
-        //Falta implementar os sub-menus
+        
         switch(opcao){
             case "1":
                 this.cadastrarNovoProduto();
@@ -108,41 +81,79 @@ public class MenuProduto {
         }
     }
 
-    private void mostrarDadosPorId(String id, List<Object> listaDeDados) {
-        for (Object objeto : listaDeDados) {
-            // Verifica se o objeto possui um campo "id" e se o valor é igual ao ID desejado
-            if (objeto instanceof Map) {
-                Map<?, ?> mapa = (Map<?, ?>) objeto;
-                Object valorId = mapa.get("id");
-                if (valorId != null && valorId.toString().equals(id)) {
-                    // Mostra os campos desejados
-                    System.out.println("ID: " + mapa.get("id"));
-                    System.out.println("Nome: " + mapa.get("nome"));
-                    System.out.println("Email: " + mapa.get("email"));
-                    System.out.println("Endereço: " + mapa.get("endereco"));
-                    return;
-                }
-            }
-        }
+    private void cadastrarNovoProduto(){
+        System.out.println("\n");
 
-        System.out.println("Objeto com o ID " + id + " não encontrado.");
+        System.out.println("Digite o nome do novo produto: ");
+        String name = this.entrada.nextLine();
+        System.out.println("Digite o valor do produto: ");
+        String valor = this.entrada.nextLine();
+        System.out.println("Digite o tipo do produto: ");
+        String tipo = this.entrada.nextLine();
+        System.out.println("Digite a quantidade de produtos: ");
+        String quantidade = this.entrada.nextLine();
+        System.out.println("Digite a marca do produto: ");
+        String marca = this.entrada.nextLine();
+        System.out.println("Digite a descrição do produto: ");
+        String description = this.entrada.nextLine();
+        Produto insertProduto = new Produto(name, lojaLogada.getId(), Double.parseDouble(valor), tipo, Integer.parseInt(quantidade), marca, description);
+        controladorProduto.insertData(insertProduto);
+    }
+
+    private void excluirDadosPorId(){
+        System.out.print("\nDigite o id do Comprador para excluir :");
+        int id = entrada.nextInt();
+        this.excluirDados(id, controladorProduto.readData("Produto"));
     }
 
     private void imprimirDadosDeTodosOsProdutos(List<Object> listaDeDados) {
-        System.out.println(controladorProduto.readData("Produto"));
+        this.exibirInformacoesPorId(lojaLogada.getId(), listaDeDados);
     }
+
+    private void exibirInformacoesPorId(int id, List<Object> lista) {
+       ObjectMapper mapper = new ObjectMapper();
+        boolean correspondenciaEncontrada = false; // Variável para verificar se houve correspondência
+
+        for (Object obj : lista) {
+            try {
+                String jsonString = mapper.writeValueAsString(obj);
+                JsonNode node = mapper.readTree(jsonString);
+
+                int jsonIdDaLoja = node.get("idDaLoja").asInt();
+
+                if (jsonIdDaLoja == id) {
+                    correspondenciaEncontrada = true; // Definir a correspondência como verdadeira
+
+                    int jsonId = node.get("id").asInt();
+                    String nome = node.get("nome").asText();
+                    double valor = node.get("valor").asDouble();
+                    String tipo = node.get("tipo").asText();
+                    int quantidade = node.get("quantidade").asInt();
+                    String marca = node.get("marca").asText();
+                    String descricao = node.get("descricao").asText();
+
+                    System.out.println("ID: " + jsonId);
+                    System.out.println("Nome: " + nome);
+                    System.out.println("Valor: " + valor);
+                    System.out.println("Tipo: " + tipo);
+                    System.out.println("Quantidade: " + quantidade);
+                    System.out.println("Marca: " + marca);
+                    System.out.println("Descrição: " + descricao);
+                    System.out.println();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (!correspondenciaEncontrada) {
+            System.out.println("Nenhuma correspondência encontrada para o ID: " + id);
+        }
+    }
+
 
     private void excluirDados(int id, List<Object> jsonData) {
         controladorProduto.deleteData(id, "Produto");
-    }
-
-    private String obterValor(Map<?, ?> mapa, String chave) {
-        Object valor = mapa.get(chave);
-        if (valor != null) {
-            return valor.toString();
-        } else {
-            return "";
-        }
     }
 
     private void atualizarInformacaoDoNome(){
@@ -153,4 +164,5 @@ public class MenuProduto {
         String nome = entrada.nextLine();
         controladorProduto.updateData("Produto", id, nome);
     }
+
 }

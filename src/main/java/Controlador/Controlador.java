@@ -15,6 +15,7 @@ import Loja.Loja;
 import Produto.Produto;
 
 public class Controlador {
+    
     public void insertData(Object obj) {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
