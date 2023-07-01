@@ -128,4 +128,34 @@ public class ControladorComprador extends Controlador {
             System.err.println("Ocorreu um erro ao atualizar o dado no arquivo JSON: " + e.getMessage());
         }
     }
+
+    public void avaliarCompra(Produto prod, Comprador comp, int nota, String comentario) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        String diretorioProjeto = System.getProperty("user.dir");
+        String caminhoFinal = diretorioProjeto + File.separator + "src" + File.separator + "database" + File.separator + "Comprador.json";
+        File arquivoJson = new File(caminhoFinal);
+
+        // Criar o tipo concreto que representa a lista de objetos esperada
+        TypeFactory typeFactory = objectMapper.getTypeFactory();
+
+        try {
+            CollectionType listType = typeFactory.constructCollectionType(List.class, Comprador.class);
+
+            List<Comprador> objetosExistentes = objectMapper.readValue(arquivoJson, listType);
+
+            // Encontrar o objeto com o ID desejado e atualizar a avaliação da compra
+            for (Comprador comprador : objetosExistentes) {
+                if (comprador.getId() == comp.getId()) {
+                    comprador.avaliarCompra(nota, comentario);
+                    break;
+                }
+            }
+            // Salvar os dados atualizados no arquivo JSON
+            objectMapper.writeValue(arquivoJson, objetosExistentes);
+        } catch (IOException e) {
+            System.err.println("Ocorreu um erro ao adicionar uma avaliação à compra: " + e.getMessage());
+        }
+    }
 }

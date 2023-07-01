@@ -8,6 +8,7 @@ public class Produto{
     private int quantidade;
     private String marca;
     private String descricao;
+    private Integer nota;
 
     // Generic Constructor
     public Produto(String nome, double valor, String tipo, int quantidade, String marca, String descricao){
@@ -81,6 +82,7 @@ public class Produto{
     public int getId(){
         return this.id;
     }
+    public int getAvaliacao(Integer nota) { this.nota = nota; return 0; }
 
     // Método para exibir os dados da loja
     public void exibirProduto() {
@@ -91,5 +93,6 @@ public class Produto{
         System.out.println("Quantidade: " + this.quantidade);
         System.out.println("Marca: " + this.marca);
         System.out.println("Descrição: " + this.descricao);
+        System.out.println("Nota da loja: " + this.nota);
     }
 }

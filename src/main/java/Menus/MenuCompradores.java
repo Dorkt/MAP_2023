@@ -1,12 +1,13 @@
 package Menus;
-import java.util.ArrayList;
+
+import Comprador.Comprador;
+import Comprador.ControladorComprador;
+import Produto.ControladorProduto;
+import Produto.Produto;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import Comprador.ControladorComprador;
-import Comprador.Comprador;
-import Produto.Produto;
-import Produto.ControladorProduto;
 
 public class MenuCompradores {
     // Creation of variables/attributes
@@ -111,6 +112,10 @@ public class MenuCompradores {
                 this.controladorComprador.mostrarHistoricoDeCompras(this.compradorLogado);
                 break;
 
+            case "11":
+                this.compradorLogado.avaliarCompra(2, "ok");
+                break;
+
             case "0":
                 System.out.println("Saindo do Sistema");
                 this.controlador = false;
@@ -204,6 +209,8 @@ public class MenuCompradores {
                 controladorProduto.comprarProduto(produto.getId());
                 compradorLogado.adicionarCompra(produto);
                 controladorComprador.adicionarProdutoAoHistorico(produto, compradorLogado);
+                compradorLogado.avaliarCompra(1, "ok");
+                compradorLogado.obterConceito();
             } catch (IllegalArgumentException e) {
                 System.out.println("Não foi possível comprar o produto: " + e.getMessage());
             }

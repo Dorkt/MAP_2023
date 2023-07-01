@@ -2,8 +2,8 @@ package Comprador;
 
 import Produto.Produto;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Comprador {
     private int id;
@@ -14,6 +14,9 @@ public class Comprador {
     private String endereco;
     private List<Produto> historicoCompras;
     private List<Produto> carrinhoDeCompras;
+    private Integer nota;
+    private String comentario;
+    private int pontuacao;
 
     public Comprador(String nome, String email, String senha, String cpf, String endereco) {
         ControladorComprador t = new ControladorComprador();
@@ -28,6 +31,9 @@ public class Comprador {
         this.endereco = endereco;
         this.historicoCompras = new ArrayList<Produto>();
         this.carrinhoDeCompras = new ArrayList<Produto>();
+        this.nota = null;
+        this.comentario = null;
+        this.pontuacao = 0;
     }
 
     // Adicionando construtor vazio para que a biblioteca que lê os dados persistidos conseguir converter os tipos para
@@ -105,6 +111,12 @@ public class Comprador {
         return this.historicoCompras;
     }
 
+    public void avaliarCompra(Integer nota, String comentario) {
+        this.nota = nota;
+        this.comentario = comentario;
+        this.pontuacao += 1;
+    }
+
     // Limpar o carrinho de compras
     public void limparCarrinho() {
         carrinhoDeCompras.clear();
@@ -136,6 +148,22 @@ public class Comprador {
     public void exibirHistoricoCompras() {
         for (Produto produto : historicoCompras) {
             System.out.println(produto);
+        }
+    }
+
+    public int getPontuacao() {
+        return pontuacao;
+    }
+
+    public String obterConceito() {
+        if (nota == null) {
+            return "Avaliação pendente";
+        } else if (nota <= 1) {
+            return "Ruim";
+        } else if (nota <= 3) {
+            return "Médio";
+        } else {
+            return "Excelente";
         }
     }
 }

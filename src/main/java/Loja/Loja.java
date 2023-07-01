@@ -1,4 +1,5 @@
 package Loja;
+
 public class Loja {
     private int id;
     private String nome;
@@ -6,6 +7,7 @@ public class Loja {
     private String senha;
     private String cpfCnpj;
     private String endereco;
+    private Integer avaliacoes;
 
     public Loja(String nome, String email, String senha, String cpfCnpj, String endereco) {
         ControladorLoja controller = new ControladorLoja();
@@ -17,6 +19,7 @@ public class Loja {
         this.senha = senha;
         this.cpfCnpj = cpfCnpj;
         this.endereco = endereco;
+        this.avaliacoes = avaliacoes;
     }
 
     // Adicionando construtor vazio para que a biblioteca que lê os dados persistidos conseguir converter os tipos para
@@ -70,6 +73,9 @@ public class Loja {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    public int getAvaliacoes() {return this.avaliacoes; }
+    public void setAvaliacoes(){ this.avaliacoes = avaliacoes; }
 
     // Método para exibir os dados da loja
     public void exibirLoja() {
