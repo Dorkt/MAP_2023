@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.Scanner;
 import javax.tools.JavaFileObject;
 
+import Loja.ControladorLoja;
+import Loja.Loja;
 import Produto.ControladorProduto;
 import Produto.Produto;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -21,6 +23,8 @@ public class MenuProduto {
     private Scanner entrada = new Scanner(System.in);
     private String escolha;
     private ControladorProduto controladorProduto = new ControladorProduto();
+    private ControladorLoja controladorLoja = new ControladorLoja();
+    private Loja lojaLogada = controladorLoja.selecionarLojaLogada();
 
     public MenuProduto(){
         this.textoInicialMenuProduto();
@@ -68,7 +72,7 @@ public class MenuProduto {
         String marca = this.entrada.nextLine();
         System.out.println("Digite a descrição do produto: ");
         String description = this.entrada.nextLine();
-        Produto insertProduto = new Produto(name, Double.parseDouble(valor), tipo, Integer.parseInt(quantidade), marca, description);
+        Produto insertProduto = new Produto(name, Double.parseDouble(valor), tipo, Integer.parseInt(quantidade), marca, description, lojaLogada.getId());
         controladorProduto.insertData(insertProduto);
     }
 

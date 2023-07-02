@@ -1,17 +1,17 @@
 package Produto;
 public class Produto{
     // Variables Declaration
-    private int id;
+    protected int id;
     private String nome;
     private double valor;    
     private String tipo;
     private int quantidade;
     private String marca;
     private String descricao;
-    private Integer nota;
+    private Integer idLoja;
 
     // Generic Constructor
-    public Produto(String nome, double valor, String tipo, int quantidade, String marca, String descricao){
+    public Produto(String nome, double valor, String tipo, int quantidade, String marca, String descricao, Integer idLoja){
         ControladorProduto controller = new ControladorProduto();
         int size = controller.readData("Produto").size();
 
@@ -23,6 +23,7 @@ public class Produto{
         this.marca = marca;
         this.descricao = descricao;
         this.id ++;
+        this.idLoja = idLoja;
     }
 
     public Produto() {
@@ -82,7 +83,9 @@ public class Produto{
     public int getId(){
         return this.id;
     }
-    public int getAvaliacao(Integer nota) { this.nota = nota; return 0; }
+    public void setId() {}
+
+    public int getIdLoja() { return this.idLoja; }
 
     // Método para exibir os dados da loja
     public void exibirProduto() {
@@ -93,6 +96,6 @@ public class Produto{
         System.out.println("Quantidade: " + this.quantidade);
         System.out.println("Marca: " + this.marca);
         System.out.println("Descrição: " + this.descricao);
-        System.out.println("Nota da loja: " + this.nota);
+        System.out.println("Id da loja vendedora: " + this.idLoja);
     }
 }
