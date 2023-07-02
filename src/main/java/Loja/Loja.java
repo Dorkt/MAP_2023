@@ -7,7 +7,8 @@ public class Loja {
     private String senha;
     private String cpfCnpj;
     private String endereco;
-    private Integer avaliacoes;
+    private Double avaliacao;
+    private Integer numAvaliacao;
 
     public Loja(String nome, String email, String senha, String cpfCnpj, String endereco) {
         ControladorLoja controller = new ControladorLoja();
@@ -19,13 +20,13 @@ public class Loja {
         this.senha = senha;
         this.cpfCnpj = cpfCnpj;
         this.endereco = endereco;
-        this.avaliacoes = avaliacoes;
+        this.numAvaliacao = 1;
+        this.avaliacao = 3.0;
     }
 
     // Adicionando construtor vazio para que a biblioteca que lê os dados persistidos conseguir converter os tipos para
     // o dessa classe
     public Loja() {
-
     }
 
     // Getters e Setters
@@ -74,8 +75,28 @@ public class Loja {
         this.endereco = endereco;
     }
 
-    public int getAvaliacoes() {return this.avaliacoes; }
-    public void setAvaliacoes(){ this.avaliacoes = avaliacoes; }
+    public double getAvaliacao() {
+        // if (this.avaliacao <= 1.5) {
+        //  return "ruim";
+        // } else if (this.avaliacao > 1.5 && this.avaliacao < 3) {
+        //    return "médio";
+        // } else if (this.avaliacao > 3 && this.avaliacao < 4.5) {
+        //   return "bom";
+        //} else if (this.avaliacao > 4.5) {
+        //    return "excelente";
+        //} else {
+        //    return "não avaliado ainda";
+        //}
+        return this.avaliacao;
+    }
+    public void setAvaliacoes(double novaAvaliacao) {
+        this.numAvaliacao++;
+        this.avaliacao = (this.avaliacao + novaAvaliacao) / this.numAvaliacao;
+    }
+
+    public int getNumAvaliacao() {
+        return this.numAvaliacao;
+    }
 
     // Método para exibir os dados da loja
     public void exibirLoja() {

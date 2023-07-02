@@ -1,12 +1,15 @@
 package Comprador;
 
+import Compra.Compra;
 import Controlador.Controlador;
+import Loja.ControladorLoja;
 import Produto.Produto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
+import javax.naming.ldap.Control;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -60,7 +63,7 @@ public class ControladorComprador extends Controlador {
         return new Comprador();
     }
 
-    public void adicionarProdutoAoHistorico(Produto prod, Comprador comp) {
+    public void adicionarProdutoAoHistorico(Compra prod, Comprador comp) {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
@@ -80,6 +83,7 @@ public class ControladorComprador extends Controlador {
             for (Comprador comprador : objetosExistentes) {
                 if (comprador.getId() == comp.getId()) {
                     comprador.adicionarCompra(prod);
+                    comprador.adicionarMaisPonto();
                     break;
                 }
             }
@@ -106,7 +110,7 @@ public class ControladorComprador extends Controlador {
             CollectionType listType = typeFactory.constructCollectionType(List.class, Comprador.class);
 
             List<Comprador> objetosExistentes = objectMapper.readValue(arquivoJson, listType);
-            List<Produto> produtos = new ArrayList<>();
+            List<Compra> produtos = new ArrayList<>();
 
             // Encontrar o objeto com o ID desejado e atualizar o nome
             for (Comprador comprador : objetosExistentes) {
@@ -129,7 +133,8 @@ public class ControladorComprador extends Controlador {
         }
     }
 
-    public void avaliarCompra(Produto prod, Comprador comp, int nota, String comentario) {
+    public void avaliarCompra(Integer prodId, Comprador comp, double nota, String comentario) {
+        ControladorLoja controladorLoja = new ControladorLoja();
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
@@ -148,7 +153,17 @@ public class ControladorComprador extends Controlador {
             // Encontrar o objeto com o ID desejado e atualizar a avaliação da compra
             for (Comprador comprador : objetosExistentes) {
                 if (comprador.getId() == comp.getId()) {
-                    comprador.avaliarCompra(nota, comentario);
+                    List<Compra> compras = comprador.getHistoricoComprasDeCompras();
+                    for (Compra comprasFeitas: compras) {
+                        if (comprasFeitas.getId() == prodId) {
+                            System.out.println("Aaaaa 2" + nota);
+                            comprasFeitas.setAvaliacao(nota);
+                            comprasFeitas.setComentario(comentario);
+                            comprador.adicionarMaisPonto();
+                            controladorLoja.updateAvaliacaoLoja(comprasFeitas.getIdLoja(), nota);
+                            break;
+                        }
+                    }
                     break;
                 }
             }
@@ -157,5 +172,59 @@ public class ControladorComprador extends Controlador {
         } catch (IOException e) {
             System.err.println("Ocorreu um erro ao adicionar uma avaliação à compra: " + e.getMessage());
         }
+    }
+
+    public Integer getTotalComprasNoSistema() {
+        Integer size = 0;
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+            String diretorioProjeto = System.getProperty("user.dir");
+            String caminhoArquivo = diretorioProjeto + File.separator + "src" + File.separator + "database" + File.separator;
+            List<Comprador> produtosExistentes = new ArrayList<>();
+
+            String caminhoFinal = caminhoArquivo + "Comprador.json";
+            File arquivoJson = new File(caminhoFinal);
+            TypeFactory typeFactory = objectMapper.getTypeFactory();
+            CollectionType listType = typeFactory.constructCollectionType(List.class, Comprador.class);
+            List<Comprador> objetosExistentes = objectMapper.readValue(arquivoJson, listType);
+
+            for (Comprador comprador : objetosExistentes) {
+                // Suponha que cada objeto tenha um método getId() que retorna o ID
+                size += comprador.totalCompras();
+            }
+        } catch (IOException e) {
+            System.err.println("Ocorreu um erro ao salvar os dados no arquivo JSON: " + e.getMessage());
+        }
+        return size;
+    }
+
+    public Integer getPontuacaoDoUsuarioLogado(Integer id) {
+        Integer pontuacao = 0;
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+            String diretorioProjeto = System.getProperty("user.dir");
+            String caminhoArquivo = diretorioProjeto + File.separator + "src" + File.separator + "database" + File.separator;
+            List<Comprador> produtosExistentes = new ArrayList<>();
+
+            String caminhoFinal = caminhoArquivo + "Comprador.json";
+            File arquivoJson = new File(caminhoFinal);
+            TypeFactory typeFactory = objectMapper.getTypeFactory();
+            CollectionType listType = typeFactory.constructCollectionType(List.class, Comprador.class);
+            List<Comprador> objetosExistentes = objectMapper.readValue(arquivoJson, listType);
+
+            for (Comprador comprador : objetosExistentes) {
+                if (comprador.getId() == id) {
+                    pontuacao = comprador.getPontuacao();
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Ocorreu um erro ao salvar os dados no arquivo JSON: " + e.getMessage());
+        }
+        return pontuacao;
     }
 }

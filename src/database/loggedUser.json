@@ -1,34 +1,22 @@
 {
   "id" : 1,
-  "nome" : "123",
-  "email" : "123",
+  "nome" : "gabriel",
+  "email" : "g@mail.com",
   "senha" : "123",
   "cpf" : "123",
-  "endereco" : "123",
+  "endereco" : "rua 14",
   "carrinhoDeCompras" : [ ],
+  "pontuacao" : 1,
   "historicoComprasDeCompras" : [ {
-    "id" : 2,
+    "id" : 1,
     "nome" : "Novo produto 1",
     "valor" : 159.0,
     "tipo" : "roupa",
-    "quantidade" : 1437,
+    "quantidade" : 1425,
     "marca" : "nike",
-    "descricao" : "super roupa da nike"
-  }, {
-    "id" : 2,
-    "nome" : "Novo produto 1",
-    "valor" : 159.0,
-    "tipo" : "roupa",
-    "quantidade" : 1436,
-    "marca" : "nike",
-    "descricao" : "super roupa da nike"
-  }, {
-    "id" : 3,
-    "nome" : "MegaSuperProduto",
-    "valor" : 170.0,
-    "tipo" : "roupa",
-    "quantidade" : 1,
-    "marca" : "nike",
-    "descricao" : "super roupa da nike"
+    "descricao" : "super roupa da nike",
+    "idLoja" : 1,
+    "comentario" : "opa rapa",
+    "notaAvaliacao" : 3.0
   } ]
 }

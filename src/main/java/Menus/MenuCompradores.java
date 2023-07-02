@@ -1,5 +1,6 @@
 package Menus;
 
+import Compra.Compra;
 import Comprador.Comprador;
 import Comprador.ControladorComprador;
 import Produto.ControladorProduto;
@@ -48,11 +49,10 @@ public class MenuCompradores {
         System.out.println("4 - Listar todos os Compradores.");
         System.out.println("5 - Adicionar produto ao carrinho.");
         System.out.println("6 - Listar produtos no carrinho.");
-        System.out.println("7 - Remover produto do carrinho");
-        System.out.println("8 - Finalizar compra do carrinho");
+        System.out.println("7 - Remover produto do carrinho.");
+        System.out.println("8 - Finalizar compra do carrinho.");
         System.out.println("9 - Listar todos os Produtos.");
         System.out.println("10 - Listar histórico de compras.");
-        System.out.println("11 - Visualizar A minha Avaliação.");
         System.out.println("0 - Sair do Sistema de Compradores.\n");
         System.out.print("Digite a sua Opção: ");
     }
@@ -114,7 +114,7 @@ public class MenuCompradores {
                 break;
 
             case "11":
-                //MenuProduto menuProduto = new MenuProduto();
+                this.compradorLogado.avaliarCompra(2, "ok");
                 break;
 
             case "0":
@@ -208,10 +208,9 @@ public class MenuCompradores {
         for (Produto produto : produtosCarrinho) {
             try {
                 controladorProduto.comprarProduto(produto.getId());
-                compradorLogado.adicionarCompra(produto);
-                controladorComprador.adicionarProdutoAoHistorico(produto, compradorLogado);
-                compradorLogado.avaliarCompra(1, "ok");
-                compradorLogado.obterConceito();
+                Compra newCompra = new Compra(produto.getNome(), produto.getValor(), produto.getTipo(), produto.getQuantidade(), produto.getMarca(), produto.getDescricao(), produto.getIdLoja());
+                compradorLogado.adicionarCompra(newCompra);
+                controladorComprador.adicionarProdutoAoHistorico(newCompra, compradorLogado);
             } catch (IllegalArgumentException e) {
                 System.out.println("Não foi possível comprar o produto: " + e.getMessage());
             }
@@ -275,6 +274,38 @@ public class MenuCompradores {
                 System.out.println("Descrição: " + descricao);
                 System.out.println("-------------------------");
             }
+        }
+    }
+
+    private void avaliarCompra() {
+        System.out.print("\nDigite o id do produto que deseja avaliar do historico de compras: ");
+        String idDaCompra = entrada.nextLine();
+
+        System.out.print("\nDigite a nota para a compra feita: ");
+        String nota = entrada.nextLine();
+
+        System.out.print("\nDigite o comentario para a compra feita: ");
+        String comentario = entrada.nextLine();
+
+        controladorComprador.avaliarCompra(Integer.parseInt(idDaCompra), compradorLogado, Double.parseDouble(nota), comentario);
+        System.out.println("Parabéns você ganhou mais um ponto pela avaliação feita");
+    }
+
+    private void visualizarBonificacoes() {
+        System.out.println("Benefícios por pontuação");
+        System.out.println("Pontuação igual ou maior que 2 = Frete grátis");
+        System.out.println("Pontuação igual ou maior que 4 = Embalagem de presente grátis");
+        System.out.println("Pontuação igual ou maior que 6 = Entrega sedex grátis");
+
+        Integer pontuacao = controladorComprador.getPontuacaoDoUsuarioLogado(compradorLogado.getId());
+        System.out.println("Pontuação atual: " + pontuacao);
+
+        if (pontuacao >= 2 && pontuacao < 4) {
+            System.out.println("Parabéns, atualmente você possui frete grátis em todas as suas compras");
+        } else if (pontuacao >= 4 && pontuacao < 6) {
+            System.out.println("Parabéns, atualmente você possui frete grátis e embalagem presente grátis em todas as suas compras");
+        } else if (pontuacao >= 6) {
+            System.out.println("Parabéns, atualmente você possui frete grátis, embalagem presente grátis e sedex grátis em todas as suas compras");
         }
     }
 }

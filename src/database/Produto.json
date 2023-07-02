@@ -3,15 +3,17 @@
   "nome" : "Novo produto 1",
   "valor" : 159.0,
   "tipo" : "roupa",
-  "quantidade" : 1435,
+  "quantidade" : 1424,
   "marca" : "nike",
-  "descricao" : "super roupa da nike"
+  "descricao" : "super roupa da nike",
+  "idLoja" : 1
 }, {
   "id" : 3,
   "nome" : "MegaSuperProduto",
   "valor" : 170.0,
   "tipo" : "roupa",
-  "quantidade" : 0,
+  "quantidade" : 25,
   "marca" : "nike",
-  "descricao" : "super roupa da nike"
+  "descricao" : "super roupa da nike",
+  "idLoja" : 1
 } ]
