@@ -1,23 +1,15 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import Produto.Produto;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ProdutoTest {
 
     @Test
     public void testConstructorAndGetters() {
-        Produto produto = new Produto("Nome do Produto", 10.0, "Tipo do Produto", 5, "Marca", "Descrição");
+        Produto produto = new Produto("Nome do Produto", 10.0, "Tipo do Produto", 5, "Marca", "Descrição", null);
         assertEquals("Nome do Produto", produto.getNome());
         assertEquals(10.0, produto.getValor());
         assertEquals("Tipo do Produto", produto.getTipo());
@@ -47,7 +39,7 @@ public class ProdutoTest {
 
     @Test
     public void testExibirProduto() {
-        Produto produto = new Produto( "Nome do Produto", 10.0, "Tipo do Produto", 5, "Marca", "Descrição");
+        Produto produto = new Produto("Nome do Produto", 10.0, "Tipo do Produto", 5, "Marca", "Descrição", null);
 
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));

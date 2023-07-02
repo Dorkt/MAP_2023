@@ -57,7 +57,7 @@ public class MenuCompradores {
         System.out.print("Digite a sua Opção: ");
     }
 
-    private void buscarCompradorPorID(){
+    public void buscarCompradorPorID(){
         System.out.print("\nDigite o id do Comprador para buscar os dados :");
         String id = entrada.nextLine();
         this.mostrarDadosPorId(id, controladorComprador.readData("Comprador"));
@@ -175,7 +175,7 @@ public class MenuCompradores {
         }
     }
 
-    private void atualizarInformacaoDoNome(){
+    public void atualizarInformacaoDoNome(){
         System.out.print("\nDigite o id para atualizar o nome: ");
         String input = entrada.nextLine();
         int id = Integer.parseInt(input);
