@@ -1,3 +1,4 @@
+import Loja.Loja;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -5,8 +6,6 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
-import Loja.Loja;
 
 public class LojaTest {
 
@@ -47,7 +46,11 @@ public class LojaTest {
 
         System.setOut(System.out);
 
-        String expectedOutput = "ID: 1\nNome: Nome da Loja\nE-mail: loja@example.com\nCPF/CNPJ: 123456789\nEndereço: Rua A, 123\n";
+        String expectedOutput = "ID: 1" + System.lineSeparator() +
+                "Nome: Nome da Loja" + System.lineSeparator() +
+                "E-mail: loja@example.com" + System.lineSeparator() +
+                "CPF/CNPJ: 123456789" + System.lineSeparator() +
+                "Endereço: Rua A, 123" + System.lineSeparator();
         assertNotEquals(expectedOutput, outContent.toString());
     }
 }

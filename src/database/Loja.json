@@ -5,6 +5,33 @@
   "senha" : "123",
   "cpfCnpj" : "123",
   "endereco" : "123",
-  "avaliacao" : 5,
+  "avaliacao" : 5.0,
+  "numAvaliacao" : 1
+}, {
+  "id" : 2,
+  "nome" : "Loja nova 1",
+  "email" : "loja1@mail.com",
+  "senha" : "loja1",
+  "cpfCnpj" : "111111",
+  "endereco" : "Rua 1",
+  "avaliacao" : 3.0,
+  "numAvaliacao" : 1
+}, {
+  "id" : 3,
+  "nome" : "Loja nova 2",
+  "email" : "loja2@mail.com",
+  "senha" : "loja2",
+  "cpfCnpj" : "222222",
+  "endereco" : "Rua 2",
+  "avaliacao" : 3.0,
+  "numAvaliacao" : 1
+}, {
+  "id" : 4,
+  "nome" : "Loja nova 3",
+  "email" : "loja3@mail.com",
+  "senha" : "loja3",
+  "cpfCnpj" : "333333",
+  "endereco" : "Rua 3",
+  "avaliacao" : 3.0,
   "numAvaliacao" : 1
 } ]
