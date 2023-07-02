@@ -136,6 +136,10 @@ public class MenuLoja {
 
     }
 
+    private void getAvaliacao(){
+
+    }
+
     private String obterValor(Map<?, ?> mapa, String chave) {
         Object valor = mapa.get(chave);
         if (valor != null) {

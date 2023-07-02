@@ -1,9 +1,9 @@
 package Comprador;
 
 import Produto.Produto;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Comprador {
     private int id;
@@ -112,6 +112,27 @@ public class Comprador {
     }
 
     public void avaliarCompra(Integer nota, String comentario) {
+
+        boolean continua = true;
+        Scanner entrada = new Scanner(System.in);
+
+        if(nota < 0 || nota > 5){           
+
+            while(continua){
+
+                System.out.println("\nDigite um valor entre 0 e 5.");
+                System.out.print("Digite ");
+                nota = entrada.nextInt();
+
+                if(nota < 0 || nota > 5){
+                    continua = true;
+                }
+                else{
+                    continua = false;
+                }
+            }
+        }
+        
         this.nota = nota;
         this.comentario = comentario;
         this.pontuacao += 1;

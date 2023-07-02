@@ -52,6 +52,7 @@ public class MenuCompradores {
         System.out.println("8 - Finalizar compra do carrinho");
         System.out.println("9 - Listar todos os Produtos.");
         System.out.println("10 - Listar histórico de compras.");
+        System.out.println("11 - Visualizar A minha Avaliação.");
         System.out.println("0 - Sair do Sistema de Compradores.\n");
         System.out.print("Digite a sua Opção: ");
     }
@@ -113,7 +114,7 @@ public class MenuCompradores {
                 break;
 
             case "11":
-                this.compradorLogado.avaliarCompra(2, "ok");
+                //MenuProduto menuProduto = new MenuProduto();
                 break;
 
             case "0":
@@ -231,6 +232,25 @@ public class MenuCompradores {
                 break;
             }
         }
+    }
+
+    private void getAvaliacao(){
+        String aval = "";
+
+        if(compradorLogado.getPontuacao() < 2){
+            aval = "Ruim";
+        }
+        else if(compradorLogado.getPontuacao() > 2 && compradorLogado.getPontuacao() < 3 ){
+            aval = "Regular";
+        }
+        else if(compradorLogado.getPontuacao() > 3 && compradorLogado.getPontuacao() < 4 ){
+            aval = "Bom";
+        }
+        else{
+            aval = "Excelente";
+        }
+
+        System.out.println("Sua avaliação atual é: " + aval);
     }
 
     private void listarTodosProdutos(List<Object> listaDeDados) {
